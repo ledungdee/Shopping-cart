@@ -33,22 +33,23 @@
           <!-- Email input -->
         
           <div class="form-outline mb-4">
-          <%= f.label :email, class:"form-label", for: "form3Example3" %>
-          <%= f.email_field :email, id: "form3Example3", class:"form-control form-control-lg", placeholder: "Email address" %>
+          <%= f.label :email, class: "form-label", for: "form3Example3" %>
+          <%= f.email_field :email, id: "form3Example3", class: "form-control form-control-lg", placeholder: "Email address" %>
           </div>
 
           <!-- Password input -->
           <div class="form-outline mb-3">
-          <%= f.label :password, class:"form-label", for: "form3Example4" %>
-          <%= f.password_field :password, id: "form3Example4", class:"form-control form-control-lg", placeholder: "Password" %>
+            <%= f.label :password, class:"form-label", for: "form3Example4" %>
+            <%= f.password_field :password, id: "form3Example4", class:"form-control form-control-lg", placeholder: "Password" %>
           </div>
           <div class="d-flex justify-content-between align-items-center">
-            <!-- Checkbox -->
+          
+            <!-- Remember me checkbox -->
             <div class="form-check mb-0">
-              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-              <label class="form-check-label" for="form2Example3">
-                Remember me
-              </label>
+              <%= f.label :remember_me, class:"form-check-label", for: "form2Example3" do %>
+                <%= f.check_box :remember_me, class: "form-check-input me-2", type: "checkbox", value: "", id: "form2Example3" %>
+                <span>Remember me</span>
+              <% end %>
             </div>
             <a href="#!" class="text-body">Forgot password?</a>
           </div>
