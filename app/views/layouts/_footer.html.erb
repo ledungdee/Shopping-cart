@@ -9,7 +9,7 @@
                       <div class="information_f">
                         <p><strong>ADDRESS:</strong> Dorm A, Dong Hoa Ward, Di An Town, Binh Duong Province</p>
                         <p><strong>TELEPHONE:</strong> +84967992298</p>
-                        <p><strong>EMAIL:</strong> feelgoood98@gmail.com</p>
+                        <p><strong>EMAIL:</strong> supportfamms@gmail.com</p>
                       </div>
                    </div>
                </div>
@@ -21,10 +21,10 @@
                      <div class="widget_menu">
                         <h3>Menu</h3>
                         <ul>
-                           <li><a href="#">Home</a></li>
-                           <li><a href="#">About</a></li>
-                           <li><a href="#">Blog</a></li>
-                           <li><a href="#">Contact</a></li>
+                           <li><%= link_to "Home","/" %></li>
+                           <li><%= link_to "Help", help_path %></li>
+                           <li><%= link_to "Blog", blog_path %></li>
+                           <li><%= link_to "Contact", contact_path %></li>
                         </ul>
                      </div>
                   </div>
@@ -32,10 +32,13 @@
                      <div class="widget_menu">
                         <h3>Account</h3>
                         <ul>
-                           <li><a href="#">Account</a></li>
-                           <li><a href="#">Checkout</a></li>
-                           <li><a href="#">Login</a></li>
-                           <li><a href="#">Register</a></li>
+                        <% if logged_in? %>
+                           <li><%= link_to "Profile", current_user %></li>
+                           <li><%= link_to "Log out", logout_path %></li>
+                           
+                        <% end %>
+                           <li><% link_to "Login", login_path %></li>
+                           <li><% link_to "Register", signup_path %></li>
                         </ul>
                      </div>
                   </div>
