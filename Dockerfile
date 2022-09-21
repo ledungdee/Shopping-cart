@@ -7,9 +7,9 @@ COPY Gemfile.lock /cart3/Gemfile.lock
 RUN bundle install
 
 # Add a script to be executed every time the container starts.
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
+# COPY entrypoint.sh /usr/bin/
+# RUN chmod +x /usr/bin/entrypoint.sh
+# ENTRYPOINT ["/usr/bin/entrypoint.sh"]
 EXPOSE 3000
 
 # Configure the main process to run when running the image

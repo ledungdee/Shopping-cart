@@ -14,15 +14,14 @@
                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <% if logged_in? %>
-
+                              <li class="nav-item">
+                                       <%= link_to "All product",products_path, class: "nav-link" %>
+                                    </li>
                               <% if current_user.role == 0 %>
                                     <li class="nav-item">
                                        <%= link_to "Create shop",new_shop_path, class: "nav-link" %>
                                     </li>
                               <% else %>
-                                    <li class="nav-item">
-                                       <%= link_to "Edit shop",edit_shop_path(current_shop), class: "nav-link" %>
-                                    </li>
                                     <li class="nav-item">
                                        <%= link_to "My shop",current_shop, class: "nav-link" %>
                                     </li>
@@ -35,6 +34,7 @@
                                        <%= link_to "All User", users_path, class: "nav-link" %>
                                     </li>                                   
                               <% end %>
+
                               <li class="nav-item">
                                  <%= link_to "Profile", current_user, class: "nav-link" %>
                               </li>

@@ -1,0 +1,18 @@
+<% provide(:title, @product.name) %>
+
+<div class="row">
+    <aside class="col-md-4"> 
+        <section class="user_info"> 
+            <h1>Name: <%= @product.name %></h1> 
+            <h5>Price: <%= @product.price %></h5>  
+            <h5>product.id: <%= @product.id %></h5>  
+            <h5>Shop: <%= @product.shop.name %></h5>  
+            <h5>Color: <%= @product.color %></h5>   
+            <h5>Size: <%= @product.size %></h5>   
+            <h5>Quantity_remain: <%= @product.quantity_remain %></h5>    
+            <h5>Description: <%= @product.description %></h5>  
+
+        </section> 
+    </aside> 
+</div>
+

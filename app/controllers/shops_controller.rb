@@ -15,6 +15,11 @@ class ShopsController < ApplicationController
   def index
     @shops = Shop.all
   end
+  def show
+    @shop = Shop.find_by(id: params[:id])
+    @products = current_shop.products
+  end
+
   def edit
     @shop = Shop.find(params[:id])
   end
@@ -26,8 +31,8 @@ class ShopsController < ApplicationController
       redirect_to @shop 
     end
   end
-  def show
-    @shop = Shop.find(params[:id])
+  def show_products
+    @shop_products = current_shop.products
   end
   def destroy
   end 

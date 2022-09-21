@@ -1,0 +1,20 @@
+<% provide(:title, 'Products') %>
+<h1>Products</h1>
+
+<ul class="users"> 
+
+    <% @products.each do |product| %>
+        <li>
+            <h3>
+            <%= link_to product.name, product %>
+            </h3>
+            <h5>Price: <%= product.price %></h5>  
+            <h5>product.id: <%= product.id %></h5>  
+            <h5>Shop: <%= product.shop.name %></h5>  
+            <h5>Color: <%= product.color %></h5>   
+            <h5>Size: <%= product.size %></h5>   
+            <h5>Quantity_remain: <%= product.quantity_remain %></h5>    
+            <h5>Description: <%= product.description %></h5>  
+        </li>
+    <% end %>
+</ul>
