@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'shops/new'
+
   root "static_pages#home"
   get "/help",    to: "static_pages#help"
   get "/blog",    to: "static_pages#blog"
@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   post   "/login",      to: "sessions#create"
   delete "/logout",     to: "sessions#destroy"
   resources :users
+  resources :shops
+  resources :products 
 end

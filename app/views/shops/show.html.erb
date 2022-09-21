@@ -1,0 +1,17 @@
+<% provide(:title, @shop.name) %>
+
+<div class="row">
+    <aside class="col-md-4"> 
+        <section class="user_info"> 
+            <h1>
+                <%= @shop.name %>
+                <%= link_to 'Add product',new_product_path %>
+            </h1> 
+            <h5>id shop: <%= @shop.id %> </h5> 
+            <h5>Description: <%= @shop.description %> </h5> 
+            <h5>User_id: <%= @shop.user_id %> </h5> 
+            <h5>Current_user: <%= current_user.id %> </h5> 
+
+        </section> 
+    </aside> 
+</div>

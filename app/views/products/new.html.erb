@@ -1,0 +1,51 @@
+<% provide(:title, 'New product') %>
+
+<h1>Create new product</h1>
+
+<div class="row">   
+    <div class="col-md-6 col-md-offset-3">
+        <%= form_with(model: @product, local: true ) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+
+            <%= f.label :price %>
+            <%= f.text_field :price %>
+            
+            <%= f.label :color %>
+            <%= f.text_field :color %>
+
+            <%= f.label :description %>
+            <%= f.text_field :description %>
+            
+  
+            <%= f.label :size_M, class:"checkbox inline" do %>
+            <%= f.check_box :size_M %>
+            <span>Size M</span>
+            <% end %>
+            <br>
+            <%= f.label :Quantity %>
+            <%= f.text_field :Quantity_M %>
+
+            <%= f.label :size_L, class:"checkbox inline" do %>
+            <%= f.check_box :size_L %>
+            <span>Size L</span>
+            <% end %>
+           <br>
+            <%= f.label :Quantity %>
+            <%= f.text_field :Quantity_L %>
+
+            <%= f.label :size_XL, class:"checkbox inline" do %>
+            <%= f.check_box :size_XL %>
+            <span>Size XL</span>
+            <% end %>
+           <br>
+            <%= f.label :Quantity %>
+            <%= f.text_field :Quantity_XL %>
+
+            <%= f.submit "Create product", class: "btn btn-primary" %> 
+        <% end %>
+    </div>
+</div>
+
+

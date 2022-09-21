@@ -10,9 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_12_164959) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_20_061018) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.bigint "shop_id"
+    t.string "color"
+    t.string "size"
+    t.string "price"
+    t.integer "quantity_remain", default: 0
+    t.string "description"
+    t.string "information"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_id"], name: "index_products_on_shop_id"
+  end
+
+  create_table "shops", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id"
+    t.string "description"
+    t.string "web_url"
+    t.string "avatar"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_shops_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -20,9 +51,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_12_164959) do
     t.string "password_digest"
     t.string "phone_number"
     t.string "address"
-    t.boolean "admin", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "admin", default: 0
+    t.integer "role", default: 0
     t.string "remember_digest"
   end
 

@@ -21,6 +21,14 @@ module SessionsHelper
             end 
         end
     end
+    def current_shop
+        @user = User.find_by(id: session[:user_id])
+        if (@user && @user.role == 1)
+            @user.shop
+        else 
+            return nil
+        end    
+    end
     # Returns true if the user is logged in, false otherwise.
     def logged_in?
         !current_user.nil?
@@ -46,4 +54,6 @@ module SessionsHelper
         session[:forwarding_url] = request.original_url if request.get?
     end
 
+
+    
 end

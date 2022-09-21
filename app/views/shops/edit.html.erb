@@ -1,0 +1,23 @@
+<% provide(:title, 'Edit shop') %> 
+<h1>Update your shop</h1>
+    <div class="row"> 
+        <div class="col-md-6 col-md-offset-3"> 
+            <%= form_with(model: @shop ) do |f| %> 
+
+                <%= render 'shared/error_messages', object: f.object %>
+                
+                <%= f.label :name %> 
+                <%= f.text_field :name, class: 'form-control' %>
+
+                <%= f.label :description %> 
+                <%= f.text_field :description, class: 'form-control' %>
+
+                <%= f.submit "Save changes", class: "btn btn-primary" %> 
+            <% end %> 
+            
+            <div class="gravatar_edit"> 
+                <%= gravatar_for(User.find_by(id: current_shop.user_id)) %> 
+                <a href="https://gravatar.com/emails" target="_blank">Change</a> 
+            </div> 
+        </div> 
+    </div>
