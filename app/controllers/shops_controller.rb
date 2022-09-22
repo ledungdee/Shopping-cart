@@ -1,4 +1,6 @@
 class ShopsController < ApplicationController
+  before_action :logged_in_user, only: [:edit, :update, :index, :destroy]
+  before_action :correct_shop,   only: [:edit, :update]
   def new
     @shop = current_user.build_shop 
   end
@@ -17,7 +19,7 @@ class ShopsController < ApplicationController
   end
   def show
     @shop = Shop.find_by(id: params[:id])
-    @products = current_shop.products
+    @products = @shop.products
   end
 
   def edit
@@ -32,7 +34,7 @@ class ShopsController < ApplicationController
     end
   end
   def show_products
-    @shop_products = current_shop.products
+  @shop_products = current_shop.products
   end
   def destroy
   end 
@@ -40,6 +42,20 @@ class ShopsController < ApplicationController
     def shop_params
       params.require(:shop).permit(:name, :description)
     end
-
+    def logged_in_user 
+      if logged_in? == false 
+          # store_location #L10.32
+          flash[:danger] ="Please log in." 
+          redirect_to login_url, status: :see_other 
+      end 
+    end
+    def correct_shop 
+      @shop = Shop.find(params[:id])
+      # if @user != current_user
+      if current_shop?(@shop) == false
+        flash[:danger] ="Access denied!"
+        redirect_to root_url, status: :see_other
+      end
+    end
 
 end

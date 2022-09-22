@@ -5,19 +5,23 @@
         <section class="user_info"> 
             <h1>
                 <%= @shop.name %>
+                <% if current_shop?(@shop)%>
                 <%= link_to 'Edit shop', edit_shop_path(current_shop) %>               
-                <%= link_to 'Add product',new_product_path %>      
+                <%= link_to 'Add product',new_product_path %>   
+                <% end %>   
             </h1> 
             <h5>id shop: <%= @shop.id %> </h5> 
             <h5>Description: <%= @shop.description %> </h5> 
             <h5>User_id: <%= @shop.user_id %> </h5> 
             <h5>Current_user: <%= current_user.id %> </h5> 
+            <br>
             <h2>Products:</h2>
             <% @products.each do |product| %>
                 <li>
                     <h5>Name: <%= product.name %></h5>  
                     <h5>Price: <%= product.price %></h5>  
-                    <h5>product.id: <%= product.id %></h5>  
+                    <h5>Product.id: <%= product.id %></h5>  
+                    <h5>Shop_id: <%= product.shop_id %>
                     <h5>Shop: <%= product.shop.name %></h5>  
                     <h5>Color: <%= product.color %></h5>   
                     <h5>Size: <%= product.size %></h5>   

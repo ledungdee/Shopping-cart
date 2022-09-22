@@ -49,6 +49,9 @@ module SessionsHelper
     def current_user?(user) 
         user && user == current_user 
     end
+    def current_shop?(shop) 
+        shop && shop == current_shop
+    end
     # Stores the URL trying to be accessed.L10.31
     def store_location
         session[:forwarding_url] = request.original_url if request.get?
