@@ -1,7 +1,9 @@
 class User < ApplicationRecord
-    has_one :shop 
     attr_accessor :remember_token
-    # # has_one_attached :image
+    has_one :shop
+    has_many :cart_sessions
+
+    # has_one_attached :image
     # mount_uploader :image, ImageUploader
 
     before_save { self.email = email.downcase }
