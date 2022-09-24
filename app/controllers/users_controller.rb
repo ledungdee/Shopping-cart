@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :index, :destroy]
+  before_action :logged_in_user, only: [:edit, :update, :index, :destroy, :show]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user, only: [:destroy]
+  # before_action :not_exist, only: [:show,:edit]
 
   def new
     @user = User.new 
@@ -72,12 +73,18 @@ def create
     end
 
       # Confirms an admin user.
-      def admin_user
-        if !current_user.admin?
-          redirect_to(root_url, status: :see_other)
-        end
+    def admin_user
+      if !current_user.admin?
+        redirect_to(root_url, status: :see_other)
       end
-  
+    end
+    # def not_exist
+    #   if User.find(params[:id]).nil?
+    #     flash[:danger] = "Does not exist!"
+    #     redirect_to root_url, status: :see_other 
+    #   end
+    # end
+
 end
 
 

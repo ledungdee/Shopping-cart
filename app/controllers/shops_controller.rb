@@ -1,6 +1,6 @@
 class ShopsController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :index, :destroy]
-  before_action :correct_shop,   only: [:edit, :update]
+  before_action :correct_shop,   only: [:edit, :update, :destroy]
   def new
     @shop = current_user.build_shop 
   end
@@ -37,7 +37,14 @@ class ShopsController < ApplicationController
   @shop_products = current_shop.products
   end
   def destroy
+    Shop.find(params[:id]).products.destroy_all
+    Shop.find(params[:id]).destroy
+    current_user.update_attribute(:role, 0)
+    flash[:success] = "Shop deleted"
+    redirect_to root_url, status: :see_other
   end 
+
+
   private
     def shop_params
       params.require(:shop).permit(:name, :description)

@@ -26,7 +26,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_20_061018) do
     t.string "color"
     t.string "size"
     t.string "price"
-    t.integer "quantity_remain", default: 0
+    t.integer "size_s", default: 0
+    t.integer "size_m", default: 0
+    t.integer "size_l", default: 0
+    t.integer "size_xl", default: 0
     t.string "description"
     t.string "information"
     t.datetime "created_at", null: false
