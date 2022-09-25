@@ -62,9 +62,13 @@
                     <%= content_tag :h3, class: "font-weight-semi-bold mb-4" do %>
                       $<%= @product.price %>
                     <% end %>
-                    <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
-                        clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
-                        Nonumy</p>
+                    <%= content_tag :h3, class: "font-weight-semi-bold mb-4" do %>
+                        <h5>
+                        Shop: <%= @product.shop.name %></h5>
+                    <% end %>                       
+                    <p class="mb-4">
+                        <%= @product.description %>
+                    </p>
                     <div class="product__number">
                         Số lượng: 
                         <span class="product__remain remain__active"> <%= @product.size_s %> </span>  

@@ -24,6 +24,7 @@ class ShopsController < ApplicationController
 
   def edit
     @shop = Shop.find(params[:id])
+    @user = @shop.user 
   end
   def update
     @shop = Shop.find(params[:id])
@@ -47,7 +48,7 @@ class ShopsController < ApplicationController
 
   private
     def shop_params
-      params.require(:shop).permit(:name, :description)
+      params.require(:shop).permit(:name, :description, :avatar)
     end
     def logged_in_user 
       if logged_in? == false 

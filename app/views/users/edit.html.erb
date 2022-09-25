@@ -1,39 +1,88 @@
 <% provide(:title, 'Edit user') %> 
-<h1>Update your profile</h1>
-    <div class="row"> 
-        <div class="col-md-6 col-md-offset-3"> 
-            <%= form_with(model: @user ) do |f| %> 
-
-                <%= render 'shared/error_messages', object: f.object %>
-                
-                <%= f.label :name %> 
-                <%= f.text_field :name, class: 'form-control' %>
-            
-                <%= f.label :email %> 
-                <%= f.email_field :email, class: 'form-control' %>
-
-                <%= f.label :phone_number %> 
-                <%= f.text_field :phone_number, class: 'form-control' %>
-
-                <%= f.label :address %> 
-                <%= f.text_field :address, class: 'form-control' %>
-                
-                <%= f.label :password %> 
-                <%= f.password_field :password, class: 'form-control' %>
-    
-                <%= f.label :password_confirmation, "Confirmation" %>
-                <%= f.password_field :password_confirmation, class: 'form-control' %>
+<%= form_with(model: @user ) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <% if @user.image? %>
+                    <div class="cirle_custom">
+                    <%= image_tag(@user.image.url, width:"150px") %>
+                    </div>
+                <% else %>
+                    <%= image_tag(src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg", class:"rounded-circle mt-5", width:"150px" )%>
+                <% end %>
+                <span class="font-weight-bold">
+                    <h4><b><%= @user.name %></b></h4>
+                </span>            
+                <span class="text-black-50">
+                    <%= @user.email %>
+                </span>
                 <div>
-                    <%= f.label :image, "Upload your profile picture" %>
+                    <%= f.label :image, "Upload profile picture" %>
                     <%= f.file_field :image %>
                 </div>
+            </div>
+        </div>
+        <div class="col-md-5 border-right">     
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h1 class="text-right">Profile Settings</h1>
+                </div>
+                <div class="row mt-3">
 
+                    <div class="col-md-12">
+                    <%= f.label :name, class:"labels" %> 
+                    <%= f.text_field :name, class: 'form-control' %>    
+                    </div>
+                    <div class="col-md-12">
+                    <%= f.label :email, class:"labels" %> 
+                    <%= f.text_field :email, class: 'form-control' %>    
+                    </div>
+                    <div class="col-md-12">
+                    <%= f.label :address, class:"labels" %> 
+                    <%= f.text_field :address, class: 'form-control' %>    
+                    </div>
+                    <div class="col-md-12">
+                    <%= f.label :phone_number, class:"labels" %> 
+                    <%= f.text_field :phone_number, class: 'form-control' %>    
+                    </div>
+                    <div class="col-md-12">
+                    <%= f.label :password, class:"labels" %> 
+                    <%= f.text_field :password, class: 'form-control' %>    
+                    </div>
+                    <div class="col-md-12">
+                    <%= f.label :password_confirmation, "Password Confirmation", class:"labels" %> 
+                    <%= f.password_field :password_confirmation, class: 'form-control' %>    
+                    </div>
                 <%= f.submit "Save changes", class: "btn btn-primary" %> 
-            <% end %> 
-            
-            <div class="gravatar_edit"> 
-                <%= gravatar_for @user %> 
-                <a href="https://gravatar.com/emails" target="_blank">Change</a> 
-            </div> 
-        </div> 
+                </div>
+                <div class='mt-5 text-center'>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <% if @user.role ==1 %>
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience">                   
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                    <br><br><br><br>
+                    </div>
+                </div>
+                <h4 class="col-md-12">Your shop information:</h4>
+                <br>
+                <div class="col-md-12"><h5 class="labels">Shop name:</h5>
+                <%= @shop.name %>
+                </div> <br>
+                <div class="col-md-12"><h5 class="labels">Shop description:</h5>
+                <%= @shop.description %>
+                </div>
+            </div>
+            <% end %>
+        </div>
     </div>
+</div>
+<% end %>

@@ -1,37 +1,61 @@
 <% provide(:title, 'New product') %>
 
-<h1>Create new product</h1>
-
-<div class="row">   
-    <div class="col-md-6 col-md-offset-3">
-        <%= form_with(model: @product, local: true ) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-            <%= f.label :name %>
-            <%= f.text_field :name %>
-
-            <%= f.label :price %>
-            <%= f.text_field :price %>
-            
-            <%= f.label :color %>
-            <%= f.text_field :color %>
-
-            <%= f.label :description %>
-            <%= f.text_field :description %>
-            
-            <%= f.label :size_s, "Size S:" %>
-            <%= f.number_field :size_s, placeholder: "Quantity" %>
-            <%= f.label :size_m, "Size M" %>
-            <%= f.number_field :size_m, placeholder: "Quantity" %>
-            <%= f.label :size_l, "Size L:" %>
-            <%= f.number_field :size_l, placeholder: "Quantity" %>
-            <%= f.label :size_xl, "Size XL:" %>
-            <%= f.number_field :size_xl, placeholder: "Quantity" %>
-            <div>
-                <%= f.label :images %>
-                <%= f.file_field :images, multiple: true %>
+<%= form_with(model: @product, local: true ) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+<div class="container">
+    <div class="card p-4 mt-5">
+        <div class="row g-3">
+            <div class="col-12 mb-4">
+                <h4>Add new product</h4>
+                <span class="text-muted">Add new products to sell on e-commerce platform</span>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <%= f.label :name,"Name:" %>
+                <%= f.text_field :name, class: "form-control",placeholder:"*" %>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <%= f.label :price,"Price:" %>
+                <%= f.text_field :price, class: "form-control",placeholder: "*" %>     
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <%= f.label :color,"Color:" %>
+                <%= f.text_field :color, class: "form-control",placeholder: "*" %>    
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div>
+                    <%= f.label :images, "Product images:" %>
+                    <%= f.file_field :images, multiple: true, class: "form-control" %>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div>
+                <%= f.label :size_s,"Size S:" %>
+                <%= f.number_field :size_s, class: "form-control",placeholder: "Quantity" %>  
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div>
+                <%= f.label :size_m,"Size M:" %>
+                <%= f.number_field :size_m, class: "form-control",placeholder: "Quantity" %>  
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div>
+                <%= f.label :size_l,"Size L:" %>
+                <%= f.number_field :size_l, class: "form-control",placeholder: "Quantity" %>  
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div>
+                <%= f.label :size_xl,"Size XL:" %>
+                <%= f.number_field :size_xl, class: "form-control",placeholder: "Quantity" %>  
+                </div>
             </div>
 
-            <%= f.submit "Create product", class: "btn btn-primary" %> 
-        <% end %>
+                <%= f.submit "Create product", class: "btn btn-primary"  %>
+                
+   
+        </div>
     </div>
 </div>
+<% end %>

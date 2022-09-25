@@ -10,8 +10,15 @@ body {
   overflow-x: hidden;
 }
 
+.cirle_custom {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 .layout_padding {
-  padding: 70px 0;
+  padding: px 0;
 }
 
 .layout_padding2 {

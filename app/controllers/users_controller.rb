@@ -25,10 +25,12 @@ def create
 
   def show
     @user = User.find(params[:id])
+    @shop = @user.shop
   end
 
   def edit
     @user = User.find(params[:id])
+    @shop = @user.shop
   end
 
   def update
@@ -78,12 +80,12 @@ def create
         redirect_to(root_url, status: :see_other)
       end
     end
-    def not_exist
-      if User.find(params[:id]).nil?
-        flash[:danger] = "Does not exist!"
-        redirect_to root_url, status: :see_other 
-      end
-    end
+    # def not_exist
+    #   if !User.find(params[:id]).present?
+    #     flash[:danger] = "Does not exist!"
+    #     redirect_to root_url, status: :see_other 
+    #   end
+    # end
 
 end
 
