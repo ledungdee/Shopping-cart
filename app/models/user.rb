@@ -4,7 +4,7 @@ class User < ApplicationRecord
     has_many :cart_sessions
 
     # has_one_attached :image
-    # mount_uploader :image, ImageUploader
+    mount_uploader :image, ImageUploader
 
     before_save { self.email = email.downcase }
     validates :name,  presence: true, length: { maximum: 50 } 

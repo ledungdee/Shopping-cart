@@ -50,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_24_034056) do
     t.integer "size_xl", default: 0
     t.string "description"
     t.string "information"
+    t.json "images"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["shop_id"], name: "index_products_on_shop_id"
@@ -74,6 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_24_034056) do
     t.string "address"
     t.integer "admin", default: 0
     t.integer "role", default: 0
+    t.string "image"
     t.string "remember_digest"
   end
 

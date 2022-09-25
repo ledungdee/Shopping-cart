@@ -1,18 +1,74 @@
 <% provide(:title, 'Products') %>
-<h1>Products</h1>
 
-<ul class="users"> 
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- Basic -->
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <!-- Mobile Metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <!-- Site Metas -->
+      <meta name="keywords" content="" />
+      <meta name="description" content="" />
+      <meta name="author" content="" />
+      <link rel="shortcut icon" href="images/favicon.png" type="">
+      <title>Famms - Fashion HTML Template</title>
+      <!-- bootstrap core css -->
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+      <!-- font awesome style -->
+      <link href="css/font-awesome.min.css" rel="stylesheet" />
+      <!-- Custom styles for this template -->
+      <link href="css/style.css" rel="stylesheet" />
+      <!-- responsive style -->
+      <link href="css/responsive.css" rel="stylesheet" />
+   </head>
+   <body class="sub_page">
 
-    <% @products.each do |product| %>
-        <li>
-            <h3>
-            <%= link_to product.name, product %>
-            </h3>
-            <h5>Price: <%= product.price %></h5>  
-            <h5>product.id: <%= product.id %></h5>  
-            <h5>Shop: <%= product.shop.name %></h5>  
-            <h5>Color: <%= product.color %></h5>   
-            <h5>Description: <%= product.description %></h5>  
-        </li>
-    <% end %>
-</ul>
+      <!-- product section -->
+      <section class="product_section layout_padding">
+         <div class="container">
+            <div class="heading_container heading_center">
+               <h2>
+                  All <span>products</span>
+               </h2>
+            </div>
+            <div class="row">
+                <% @products.each do |product| %>
+               <div class="col-sm-6 col-md-4 col-lg-3">
+                  <div class="box">
+                     <div class="option_container">
+                        <div class="options">
+                           <%= link_to "More details" ,product_path(product), class:"option1" %>
+                        </div>
+                     </div>
+                     <div class="img-box">
+                        <%= image_tag product.images[0].url, class: "img-fluid" %>
+                     </div>
+                     <div class="detail-box">
+                        <h5>
+                           <%= product.name %>
+                        </h5>
+                     </div>
+                     <div class="detail-box">
+                        <h6>
+                           <%= product.price %>
+                        </h6>
+                     </div>
+                  </div>
+               </div>
+               <% end %>
+            </div>
+         </div>
+      </section>
+      <!-- end product section -->
+      <!-- jQery -->
+      <script src="js/jquery-3.4.1.min.js"></script>
+      <!-- popper js -->
+      <script src="js/popper.min.js"></script>
+      <!-- bootstrap js -->
+      <script src="js/bootstrap.js"></script>
+      <!-- custom js -->
+      <script src="js/custom.js"></script>
+   </body>
+</html>

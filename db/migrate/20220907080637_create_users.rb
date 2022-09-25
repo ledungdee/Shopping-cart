@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :address
       t.integer :admin, default:false 
       t.integer :role, default:0
-
+      t.string :image 
     end
   end
 end

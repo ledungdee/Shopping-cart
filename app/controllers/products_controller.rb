@@ -67,13 +67,24 @@ class ProductsController < ApplicationController
 
     def update
         @product = Product.find(params[:id])
-    if @product.update(product_params)
-      # Handle a successful update.
-      flash[:success] = "Updated sucessful!"
-      redirect_to @product 
-    else
-      render 'edit', status: :unprocessable_entity
-    end
+        # puts params 
+        if @product.update(product_params)
+            # Handle a successful update.
+            # images = params[:product][:images]
+            # arrays = []
+            # images.each do |image|
+            #     if (!image.blank?)
+            #         arrays << image
+            #     end
+            # end
+            # @product.update_attribute(:images, arrays)
+            # # binding.pry
+
+            flash[:success] = "Updated sucessful!"
+            redirect_to @product 
+        else
+            render 'edit', status: :unprocessable_entity
+        end
   end
 
     def destroy
@@ -85,7 +96,7 @@ class ProductsController < ApplicationController
 
     private
     def product_params
-        params.require(:product).permit(:shop_id, :name, :color, :price, :size_s, :size_m, :size_l, :size_xl, :description)
+        params.require(:product).permit(:shop_id, :name, :color, :price, :size_s, :size_m, :size_l, :size_xl, :description, images:[])
     end
     def logged_in_user 
         if logged_in? == false 

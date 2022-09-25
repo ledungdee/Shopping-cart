@@ -50,7 +50,7 @@ def create
 
   private
     def user_params 
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone_number, :address) 
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone_number, :address, :image ) 
     end  
 
     # Before filters
@@ -78,12 +78,12 @@ def create
         redirect_to(root_url, status: :see_other)
       end
     end
-    # def not_exist
-    #   if User.find(params[:id]).nil?
-    #     flash[:danger] = "Does not exist!"
-    #     redirect_to root_url, status: :see_other 
-    #   end
-    # end
+    def not_exist
+      if User.find(params[:id]).nil?
+        flash[:danger] = "Does not exist!"
+        redirect_to root_url, status: :see_other 
+      end
+    end
 
 end
 

@@ -9,7 +9,7 @@
                 <%= @user.email %><br>
                 <%= @user.phone_number %><br>
                 <%= @user.address %>
-
+                <%= image_tag(@user.image.url, alt: 'Image') if @user.image? %>
                 
             </h1> 
             <h2><%= link_to "Edit profile", edit_user_path(current_user) %></h2>

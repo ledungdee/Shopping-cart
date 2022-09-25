@@ -26,6 +26,10 @@
             <%= f.number_field :size_l, placeholder: "Quantity" %>
             <%= f.label :size_xl, "Size XL:" %>
             <%= f.number_field :size_xl, placeholder: "Quantity" %>
+            <div>
+                <%= f.label :images %>
+                <%= f.file_field :images, multiple: true %>
+            </div>
 
             <%= f.submit "Create product", class: "btn btn-primary" %> 
         <% end %>
