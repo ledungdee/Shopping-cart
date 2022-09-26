@@ -34,6 +34,18 @@
             </div>
             <div class="col-lg-6 col-md-12">
                 <div>
+                <%= f.label :description,"Description:" %>
+                <%= f.text_area :description, placeholder: "Will be display in description product part ..." %>  
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div>
+                <%= f.label :information,"Information:" %>
+                <%= f.text_area :information, placeholder: "Will be short description of product page details ... " %>  
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div>
                 <%= f.label :size_s,"Size S:" %>
                 <%= f.number_field :size_s, class: "form-control",placeholder: "Quantity" %>  
                 </div>
@@ -56,17 +68,6 @@
                 <%= f.number_field :size_xl, class: "form-control",placeholder: "Quantity" %>  
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12">
-                <div>
-                <%= f.label :size_xl,"Size XL:" %>
-                <%= f.number_field :size_xl, class: "form-control",placeholder: "Quantity" %>  
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-12">
-                <div>
-                <%= f.label :size_xl,"Size XL:" %>
-                <%= f.number_field :size_xl, class: "form-control",placeholder: "Quantity" %>  
-                </div>
             </div>			
 
                 <%= f.submit "Update product", class: "btn btn-primary"  %>
