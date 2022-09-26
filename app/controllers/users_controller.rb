@@ -52,7 +52,7 @@ def create
 
   private
     def user_params 
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone_number, :address, :image ) 
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone_number, :address, :image, :image_cache) 
     end  
 
     # Before filters

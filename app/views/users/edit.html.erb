@@ -20,7 +20,8 @@
                 </span>
                 <div>
                     <%= f.label :image, "Upload profile picture" %>
-                    <%= f.file_field :image %>
+                    <%= f.file_field :image %><br>
+                    <%= f.hidden_field :image_cache %>
                 </div>
             </div>
         </div>
