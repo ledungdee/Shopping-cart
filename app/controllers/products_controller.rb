@@ -96,7 +96,7 @@ class ProductsController < ApplicationController
 
     private
     def product_params
-        params.require(:product).permit(:shop_id, :name, :color, :price, :size_s, :size_m, :size_l, :size_xl, :description, images:[])
+        params.require(:product).permit(:shop_id, :name, :color, :price, :size_s, :size_m, :size_l, :size_xl, :description, :information, images:[])
     end
     def logged_in_user 
         if logged_in? == false 

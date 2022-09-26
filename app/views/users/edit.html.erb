@@ -20,7 +20,7 @@
                 </span>
                 <div>
                     <%= f.label :image, "Upload profile picture" %>
-                    <%= f.file_field :image %>
+                    <%= f.file_field :image, class:"form-control" %>
                 </div>
             </div>
         </div>
@@ -32,28 +32,28 @@
                 <div class="row mt-3">
 
                     <div class="col-md-12">
-                    <%= f.label :name, class:"labels" %> 
+                    <h5><%= f.label :name, class:"labels" %></h5>
                     <%= f.text_field :name, class: 'form-control' %>    
                     </div>
                     <div class="col-md-12">
-                    <%= f.label :email, class:"labels" %> 
+                    <h5><%= f.label :email, class:"labels" %></h5>
                     <%= f.text_field :email, class: 'form-control' %>    
                     </div>
                     <div class="col-md-12">
-                    <%= f.label :address, class:"labels" %> 
+                    <h5><%= f.label :address, class:"labels" %></h5> 
                     <%= f.text_field :address, class: 'form-control' %>    
                     </div>
                     <div class="col-md-12">
-                    <%= f.label :phone_number, class:"labels" %> 
+                    <h5><%= f.label :phone_number, class:"labels" %></h5> 
                     <%= f.text_field :phone_number, class: 'form-control' %>    
                     </div>
                     <div class="col-md-12">
-                    <%= f.label :password, class:"labels" %> 
-                    <%= f.text_field :password, class: 'form-control' %>    
+                    <h5><%= f.label :password, class:"labels" %></h5> 
+                    <%= f.text_field :password, class: 'form-control', placeholder:"New password" %>    
                     </div>
                     <div class="col-md-12">
-                    <%= f.label :password_confirmation, "Password Confirmation", class:"labels" %> 
-                    <%= f.password_field :password_confirmation, class: 'form-control' %>    
+                    <h5><%= f.label :password_confirmation, "Password Confirmation", class:"labels" %></h5> 
+                    <%= f.password_field :password_confirmation, class: 'form-control',placeholder:"New password comfirmation" %>    
                     </div>
                 <%= f.submit "Save changes", class: "btn btn-primary" %> 
                 </div>
