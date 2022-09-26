@@ -6,67 +6,82 @@
     <div class="card p-4 mt-5">
         <div class="row g-3">
             <div class="col-12 mb-4">
-                <h4>Add new product</h4>
-                <span class="text-muted">Add new products to sell on e-commerce platform</span>
+                <span class="text-muted">
+				#Edit shop product page: 
+				</span>
+				<h4><%= @product.name %></h4>
+					<h6>Shop: <%=@product.shop.name %></h6>
+					<h6>id: <%=@product.id %></h6>
+
             </div>
             <div class="col-lg-6 col-md-12">
-                <%= f.label :name,"Name:" %>
+                <b><h5><%= f.label :name,"Name:" %></h5></b>
                 <%= f.text_field :name, class: "form-control",placeholder:"*" %>
             </div>
             <div class="col-lg-6 col-md-12">
-                <%= f.label :price,"Price:" %>
+                <b><h5><%= f.label :price,"Price:" %></h5></b>
                 <%= f.text_field :price, class: "form-control",placeholder: "*" %>     
             </div>
             <div class="col-lg-6 col-md-12">
-                <%= f.label :color,"Color:" %>
+                <b><h5><%= f.label :color,"Color:" %></h5></b>
                 <%= f.text_field :color, class: "form-control",placeholder: "*" %>    
             </div>
             <div class="col-lg-6 col-md-12">
                 <div>
-                    <%= f.label :images, "Product images:" %>
+                    <b><h5><%= f.label :images, "Product images:" %></h5></b>
                     <%= f.file_field :images, multiple: true, class: "form-control" %>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">
                 <div>
-                <%= f.label :description,"Description:" %>
+                <b><h5><%= f.label :description,"Description:" %></h5></b>
                 <%= f.text_area :description, placeholder: "Will be display in description product part ..." %>  
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">
                 <div>
-                <%= f.label :information,"Information:" %>
+                <b><h5><%= f.label :information,"Information:" %></h5></b>
                 <%= f.text_area :information, placeholder: "Will be short description of product page details ... " %>  
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">
                 <div>
+                    <b><h5>Size:</h5></b>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div>
+
+                </div>
+            </div>            
+            <div class="col-lg-6 col-md-12">
+                <div>
                 <%= f.label :size_s,"Size S:" %>
-                <%= f.number_field :size_s, class: "form-control",placeholder: "Quantity" %>  
+                <%= f.number_field :size_s, class: "form-control",placeholder: "Quantity default 0" %>  
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">
                 <div>
                 <%= f.label :size_m,"Size M:" %>
-                <%= f.number_field :size_m, class: "form-control",placeholder: "Quantity" %>  
+                <%= f.number_field :size_m, class: "form-control",placeholder: "Quantity default 0" %>  
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">
                 <div>
                 <%= f.label :size_l,"Size L:" %>
-                <%= f.number_field :size_l, class: "form-control",placeholder: "Quantity" %>  
+                <%= f.number_field :size_l, class: "form-control",placeholder: "Quantity default 0" %>  
                 </div>
             </div>
             <div class="col-lg-6 col-md-12">
                 <div>
                 <%= f.label :size_xl,"Size XL:" %>
-                <%= f.number_field :size_xl, class: "form-control",placeholder: "Quantity" %>  
+                <%= f.number_field :size_xl, class: "form-control",placeholder: "Quantity default 0" %>  
                 </div>
             </div>
+            </div>			
 
-                <%= f.submit "Create product", class: "btn btn-primary"  %>
+                <%= f.submit "Update product", class: "btn btn-primary"  %>
                 
-   
         </div>
     </div>
 </div>
