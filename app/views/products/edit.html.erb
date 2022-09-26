@@ -7,12 +7,13 @@
         <div class="row g-3">
             <div class="col-12 mb-4">
                 <span class="text-muted">
-				#Edit shop product page: 
+				<h4>#Edit shop product page:</h4> 
 				</span>
-				<h4><%= @product.name %></h4>
-					<h6>Shop: <%=@product.shop.name %></h6>
-					<h6>id: <%=@product.id %></h6>
-
+				<h3><%= @product.name %></h3>
+                <span class="text-muted">
+					<h3>Shop: <%=@product.shop.name %></h3>
+					<h3>id: <%=@product.id %></h3>
+                </span>
             </div>
             <div class="col-lg-6 col-md-12">
                 <b><h5><%= f.label :name,"Name:" %></h5></b>

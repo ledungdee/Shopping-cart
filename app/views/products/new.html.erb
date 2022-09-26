@@ -7,12 +7,12 @@
         <div class="row g-3">
             <div class="col-12 mb-4">
                 <span class="text-muted">
-				#Edit shop product page: 
+				<h4>#New product page:</h4> 
 				</span>
-				<h4><%= @product.name %></h4>
-					<h6>Shop: <%=@product.shop.name %></h6>
-					<h6>id: <%=@product.id %></h6>
-
+					<h3><%=@product.shop.name %></h3>
+                <span class="text-muted">
+				Create new products to sell on e-commerce sites 
+				</span>
             </div>
             <div class="col-lg-6 col-md-12">
                 <b><h5><%= f.label :name,"Name:" %></h5></b>
@@ -80,7 +80,7 @@
             </div>
             </div>			
 
-                <%= f.submit "Update product", class: "btn btn-primary"  %>
+                <%= f.submit "Create", class: "btn btn-primary"  %>
                 
         </div>
     </div>
