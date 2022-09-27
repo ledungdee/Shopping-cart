@@ -9,7 +9,8 @@
     <% @cart_items.each do |s| %>
         <li>
             <h3>
-            <%= link_to s.product.name, s %> 
+            <% @product = s.product %>
+            <%= link_to s.product.name, @product %> 
             $<%= s.product.price %>
             <%= s.product.color %>
             <%= s.quantity%>
