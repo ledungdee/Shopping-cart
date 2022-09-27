@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
     before_action :logged_in_user, only: [:edit, :update, :index, :destroy, :show]
     before_action :correct_shop_product, only: [:edit, :update, :destroy]
+    before_action :create_cart_session, only: [:add_to_cart]
     # edit product: only by current shop
     # 
     def new
@@ -58,7 +59,8 @@ class ProductsController < ApplicationController
     
     def show 
         @product = Product.find(params[:id])
-        @shop = @product.shop 
+        @shop = @product.shop
+        $id_current_product = @product.id 
     end
 
     def edit
@@ -93,25 +95,57 @@ class ProductsController < ApplicationController
         redirect_to current_shop, status: :see_other
     end
 
+    def add_to_cart
+
+        @cart_item = CartItem.new
+        @cart_item.quantity = params[:quantity]
+        @cart_item.size = params[:size]
+        @cart_item.cart_session_id = current_cart_session.id
+        @cart_item.product_id = current_product.id
+        
+        sum_money = @cart_item.cart_session.sum_money
+        sum_money += @cart_item.product.price.to_i * @cart_item.quantity
+        current_cart_session.update_attribute(:sum_money, sum_money)
+
+        if @cart_item.save 
+            flash[:success] = 'Success added to cart'
+            redirect_to current_product
+        else
+            render 'new', status: :unprocessable_entity
+        end
+        
+    end
+    
+
+
 
     private
     def product_params
         params.require(:product).permit(:shop_id, :name, :color, :price, :size_s, :size_m, :size_l, :size_xl, :description, :information, images:[])
     end
+
     def logged_in_user 
         if logged_in? == false 
             # store_location #L10.32
             flash[:danger] ="Please log in." 
             redirect_to login_url, status: :see_other 
         end 
-      end
+    end
+
       def correct_shop_product 
-        @shop = current_shop
-        @product = Product.find(params[:id])
-        # if @user != current_user
-        if current_shop.id != @product.shop_id
-          flash[:danger] ="Access denied!"
-          redirect_to root_url, status: :see_other
+            @shop = current_shop
+            @product = Product.find(params[:id])
+            if current_shop.id != @product.shop_id
+            flash[:danger] ="Access denied!"
+            redirect_to root_url, status: :see_other
+            end
         end
-      end
+
+    def create_cart_session
+        if current_user.cart_sessions.first == nil 
+            @cart_session = CartSession.new
+            @cart_session.user_id = current_user.id
+            @cart_session.save 
+        end
+    end
 end

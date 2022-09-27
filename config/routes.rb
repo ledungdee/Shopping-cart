@@ -12,9 +12,13 @@ Rails.application.routes.draw do
 
 
 
-
-  patch '/products/:id/editQuantity', to: 'products#updateQuantity'
   resources :users
   resources :shops
   resources :products 
+  resources :cart_items
+  resources :cart_sessions
+
+
+  post '/products/:id/add_to_cart', to: 'products#add_to_cart', as: 'add_to_cart'
+  # post '/products/:id/cart', to: 'cart_items#create', as: 'add_to_cart'
 end

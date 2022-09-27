@@ -1,5 +1,5 @@
 class CartSession < ApplicationRecord
     belongs_to :user
-    has_many :Cart_items
+    has_many :cart_items
     
 end

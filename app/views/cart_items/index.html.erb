@@ -1,2 +1,22 @@
-<h1>CartItems#index</h1>
-<p>Find me in app/views/cart_items/index.html.erb</p>
+<h1>#Cart item</h1>
+
+<h3>Customer: <%=@cart_items.first.cart_session.user.name  %></h3>
+<h3>Product money: $<%= @cart_session.sum_money %>
+<h3>Product:</h3>
+
+<h1>
+
+    <% @cart_items.each do |s| %>
+        <li>
+            <h3>
+            <%= link_to s.product.name, s %> 
+            $<%= s.product.price %>
+            <%= s.product.color %>
+            <%= s.quantity%>
+            <%= s.size%>
+            </h3>    
+        </li>
+    <% end %>
+
+<%= link_to 'Checkout','#' %>
+</h1>
