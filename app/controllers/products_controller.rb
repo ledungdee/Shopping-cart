@@ -95,6 +95,7 @@ class ProductsController < ApplicationController
         redirect_to current_shop, status: :see_other
     end
 
+    
     def add_to_cart
 
         @cart_item = CartItem.new
