@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
     before_action :logged_in_user, only: [:edit, :update, :index, :destroy, :show]
     before_action :correct_shop_product, only: [:edit, :update, :destroy]
-    before_action :create_cart_session, only: [:add_to_cart]
+
     # edit product: only by current shop
     # 
     def new
@@ -96,26 +96,7 @@ class ProductsController < ApplicationController
     end
 
     
-    def add_to_cart
-
-        @cart_item = CartItem.new
-        @cart_item.quantity = params[:quantity]
-        @cart_item.size = params[:size]
-        @cart_item.cart_session_id = current_cart_session.id
-        @cart_item.product_id = current_product.id
-        
-        sum_money = @cart_item.cart_session.sum_money
-        sum_money += @cart_item.product.price.to_i * @cart_item.quantity
-        current_cart_session.update_attribute(:sum_money, sum_money)
-
-        if @cart_item.save 
-            flash[:success] = 'Success added to cart'
-            redirect_to current_product
-        else
-            render 'new', status: :unprocessable_entity
-        end
-        
-    end
+    
 
     private
     def product_params
@@ -139,11 +120,5 @@ class ProductsController < ApplicationController
             end
         end
 
-    def create_cart_session
-        if current_user.cart_sessions.first == nil 
-            @cart_session = CartSession.new
-            @cart_session.user_id = current_user.id
-            @cart_session.save 
-        end
-    end
+    
 end
