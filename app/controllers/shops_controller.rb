@@ -5,6 +5,7 @@ class ShopsController < ApplicationController
 
   def new
     @shop = current_user.build_shop 
+    @user = @shop.user 
   end
   def create
     @shop = current_user.build_shop(shop_params)

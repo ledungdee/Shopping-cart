@@ -1,18 +1,78 @@
 <% provide(:title, 'Create shop') %>
 
-<h1>Create Shop</h1>
+<%= form_with(model: @shop ) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <% if @shop.avatar? %>
+                    <div class="cirle_custom">
+                    <%= image_tag(@shop.avatar.url, width:"150px") %>
+                    </div>
+                <% else %>
+                    <%= image_tag(src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg", class:"rounded-circle mt-5", width:"150px" )%>
+                <% end %>
+                <span class="font-weight-bold">
+                    <h4><b><%= @shop.name %></b></h4>
+                </span>            
 
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <%= form_with(model: @shop, local: true) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-            <%= f.label :name %>
-            <%= f.text_field :name %>
+                <div>
+                    <br>
+                    <%= f.label :avatar, "Upload shop avatar" %>
+                    <%= f.file_field :avatar, class: "form-control" %>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 border-right">     
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h1 class="text-right">New shop information</h1>
+                </div>
+                <div class="row mt-3">
 
-            <%= f.label :description %>
-            <%= f.text_field :description %>
+                    <div class="col-md-12">
+                    <%= f.label :name, class:"labels" %> 
+                    <%= f.text_field :name, class: 'form-control' %>    
+                    </div>
+                    <div class="col-md-12">
+                    <%= f.label :description, class:"labels" %> 
+                    <%= f.text_field :description, class: 'form-control' %>    
+                    </div>
 
-            <%= f.submit "Create shop", class: "btn btn-primary" %> 
-        <% end %>
+                <%= f.submit "Create shop", class: "btn btn-primary" %> 
+                </div>
+                <div class='mt-5 text-center'>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience">                   
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                    </div>
+                </div>
+                <h4 class="col-md-12">Owner information:</h4>
+                <br>
+                <div class="col-md-12"><h5 class="labels">Name:</h5>
+                <%= @user.name %>
+                </div>
+                <div class="col-md-12"><h5 class="labels">Phone:</h5>
+                <%= @user.phone_number %>
+                </div>
+                 <div class="col-md-12"><h5 class="labels">Address:</h5>
+                <%= @user.address %>
+                </div>
+                 <div class="col-md-12"><h5 class="labels">Email:</h5>
+                <%= @user.email %>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>  
+</div>
+<% end %>
