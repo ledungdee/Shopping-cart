@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       log_in user
       #redirect_to user 
       redirect_to forwarding_url || user #L10.33
+      create_cart_session
     else
     # Create an error message. 
       flash[:danger] ='Invalid email/password combination'
@@ -22,5 +23,11 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     redirect_to root_url, status: :see_other
   end
-  
+  def create_cart_session
+    if current_user.cart_session == nil
+        @cart_session = CartSession.new
+        @cart_session.user_id = current_user.id
+        @cart_session.save
+    end
+  end
 end

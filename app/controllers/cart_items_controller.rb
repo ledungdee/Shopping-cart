@@ -1,15 +1,11 @@
 class CartItemsController < ApplicationController
-  before_action :create_cart_session, only: [:create]
+  # before_action :create_cart_session, only: [:create]
 
   def index
-    if current_cart_session == nil
-      @k = 0
-    else
-      @k = 1
       @cart_items = current_cart_items
       @cart_session = current_cart_session
     end 
-  end
+  
   # def show
   #   @cart_item = CartItem.find(params[:id])
   # end
@@ -47,23 +43,15 @@ class CartItemsController < ApplicationController
 
   def destroy
     sum_money = current_cart_session.sum_money
-    sum_money -= current_cart_item.product.price * current_cart_item.quantity
+    sum_money -= cart_item_destroy.product.price * cart_item_destroy.quantity
     current_cart_session.update_attribute(:sum_money, sum_money)
-    current_cart_item.destroy
+    cart_item_destroy.destroy
     flash[:success] = "Deleted this item"
     redirect_to cart_items_path, status: :see_other
   end
 
   def update_quantity
 
-  end
-
-  def create_cart_session
-    if current_user.cart_session == nil
-        @cart_session = CartSession.new
-        @cart_session.user_id = current_user.id
-        @cart_session.save
-    end
   end
 
   private
