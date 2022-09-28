@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :index, :destroy, :show]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user, only: [:destroy]
-  # before_action :not_exist, only: [:show,:edit]
+  before_action :check_not_exist, only: [:show,:edit]
 
   def new
     @user = User.new 
@@ -24,7 +24,7 @@ def create
   end
 
   def show
-  @user = User.find(params[:id])
+    @user = User.find_by(id:params[:id])
     @shop = @user.shop
   end
 
@@ -45,7 +45,7 @@ def create
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    User.find_by(id:params[:id]).destroy
     flash[:success] = "User deleted"
     redirect_to users_url, status: :see_other
   end
@@ -66,7 +66,7 @@ def create
     end
 
     def correct_user
-      @user = User.find(params[:id])
+      @user = User.find_by(id:params[:id])
       # if @user != current_user
       if current_user?(@user) == false
         flash[:danger] ="Access denied!"
@@ -80,13 +80,13 @@ def create
         redirect_to(root_url, status: :see_other)
       end
     end
-    # def not_exist
-    #   if !User.find(params[:id]).present?
-    #     flash[:danger] = "Does not exist!"
-    #     redirect_to root_url, status: :see_other 
-    #   end
-    # end
-
+    def check_not_exist
+      @user = User.find_by(id:params[:id])
+      if @user.blank?
+        redirect_to root_path 
+        flash[:danger] = "User not exist!"
+      end
+    end
 end
 
 

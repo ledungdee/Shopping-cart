@@ -1,6 +1,8 @@
 class ShopsController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :index, :destroy]
   before_action :correct_shop,   only: [:edit, :update, :destroy]
+  before_action :check_not_exist, only: [:show,:edit]
+
   def new
     @shop = current_user.build_shop 
   end
@@ -38,8 +40,8 @@ class ShopsController < ApplicationController
   @shop_products = current_shop.products
   end
   def destroy
-    Shop.find(params[:id]).products.destroy_all
-    Shop.find(params[:id]).destroy
+    Shop.find_by(id:params[:id]).products.destroy_all
+    Shop.find_by(id:params[:id]).destroy
     current_user.update_attribute(:role, 0)
     flash[:success] = "Shop deleted"
     redirect_to root_url, status: :see_other
@@ -58,12 +60,18 @@ class ShopsController < ApplicationController
       end 
     end
     def correct_shop 
-      @shop = Shop.find(params[:id])
+      @shop = Shop.find_by(id:params[:id])
       # if @user != current_user
       if current_shop?(@shop) == false
         flash[:danger] ="Access denied!"
         redirect_to root_url, status: :see_other
       end
     end
-
+    def check_not_exist
+      @shop = Shop.find_by(id:params[:id])
+      if @shop.blank?
+        redirect_to root_url
+        flash[:danger] = 'Shop not exist!'
+      end
+    end
 end

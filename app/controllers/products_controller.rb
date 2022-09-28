@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
     before_action :logged_in_user, only: [:edit, :update, :index, :destroy, :show]
     before_action :correct_shop_product, only: [:edit, :update, :destroy]
+    before_action :check_not_exist, only: [:show,:edit]
+
 
     # edit product: only by current shop
     # 
@@ -100,14 +102,21 @@ class ProductsController < ApplicationController
         end 
     end
 
-      def correct_shop_product 
-            @shop = current_shop
-            @product = Product.find(params[:id])
-            if current_shop.id != @product.shop_id
+    def correct_shop_product 
+        @shop = current_shop
+        @product = Product.find_by(id:params[:id])
+        if current_shop.id != @product.shop_id
             flash[:danger] ="Access denied!"
             redirect_to root_url, status: :see_other
-            end
         end
+    end
 
-    
+    def check_not_exist
+        @product = Product.find_by(id:params[:id])
+        if @product.blank?
+            redirect_to root_path
+            flash[:danger] = 'Product not exist!'
+        end
+    end
+
 end
