@@ -1,5 +1,5 @@
 class CartItemsController < ApplicationController
-  # before_action :create_cart_session, only: [:create]
+  before_action :create_cart_session, only: [:create]
 
   def index
     if current_cart_session == nil
