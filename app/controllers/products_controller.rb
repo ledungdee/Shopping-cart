@@ -71,17 +71,6 @@ class ProductsController < ApplicationController
         @product = Product.find(params[:id])
         # puts params 
         if @product.update(product_params)
-            # Handle a successful update.
-            # images = params[:product][:images]
-            # arrays = []
-            # images.each do |image|
-            #     if (!image.blank?)
-            #         arrays << image
-            #     end
-            # end
-            # @product.update_attribute(:images, arrays)
-            # # binding.pry
-
             flash[:success] = "Updated sucessful!"
             redirect_to @product 
         else

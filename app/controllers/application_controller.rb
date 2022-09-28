@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
-    include SessionsHelper 
+    include SessionsHelper
     include ShopsHelper
     include ProductsHelper
     include CartSessionsHelper
     include CartItemsHelper
-    include UsersHelper
 end

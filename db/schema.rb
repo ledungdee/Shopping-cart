@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_24_034056) do
     t.string "name"
     t.bigint "shop_id"
     t.string "color"
-    t.string "price"
+    t.integer "price"
     t.integer "size_s", default: 0
     t.integer "size_m", default: 0
     t.integer "size_l", default: 0
