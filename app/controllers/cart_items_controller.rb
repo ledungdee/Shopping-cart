@@ -60,6 +60,9 @@ class CartItemsController < ApplicationController
     end
     @cart_item.cart_session.update_attribute(:sum_money, sum_money)
     @cart_item.update_attribute(:quantity, new_quantity)
+    if new_quantity == 0
+      @cart_item.destroy 
+    end
     redirect_to cart_items_path
     # binding.pry
   end
