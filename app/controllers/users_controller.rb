@@ -12,6 +12,7 @@ def create
     if @user.save
       reset_session
       log_in @user 
+      create_cart_session
       flash[:success] ="Welcome to the Shopping Cart!"
       redirect_to @user
     else
@@ -34,7 +35,7 @@ def create
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find_by(id:params[:id])
     if @user.update(user_params)
       # Handle a successful update.
       flash[:success] = "Profile updated!"
@@ -85,6 +86,13 @@ def create
       if @user.blank?
         redirect_to root_path 
         flash[:danger] = "User not exist!"
+      end
+    end
+    def create_cart_session
+      if current_user.cart_session == nil
+          @cart_session = CartSession.new
+          @cart_session.user_id = current_user.id
+          @cart_session.save
       end
     end
 end
