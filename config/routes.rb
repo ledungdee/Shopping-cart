@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   resources :cart_sessions
 
 
-  post '/products/:id/add_to_cart', to: 'cart_items#create', as: 'add_to_cart'
+  post '/products/add_to_cart', to: 'cart_items#create', as: 'add_to_cart'
   patch '/update_quantity', to: 'cart_items#update_quantity'
+  post '/cart_sessions/:id/order', to: 'cart_sessions#checkout', as: 'checkout'
+
+  get '/user/new_addr', to: 'users#change_delivery_address', as: 'new_addr'
+  patch '/user/new_addr', to: 'users#update_delivery_address', as: 'update_addr'
 end

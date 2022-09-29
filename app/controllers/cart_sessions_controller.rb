@@ -4,23 +4,11 @@ class CartSessionsController < ApplicationController
   end
 
   def show
-  end
-
-  def new
-  end
-
-  def edit
-  end
-
-  def create
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
-  def update_quantity
+    @cart_items = current_cart_session.cart_items
+    @cart_session = current_cart_session
+    @item_number = 0
+    @cart_items.each do |t|
+      @item_number += t.quantity
+    end
   end
 end

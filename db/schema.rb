@@ -73,6 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_24_034056) do
     t.string "password_digest"
     t.string "phone_number"
     t.string "address"
+    t.string "delivery_address"
     t.integer "admin", default: 0
     t.integer "role", default: 0
     t.string "image"

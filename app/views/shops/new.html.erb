@@ -32,11 +32,11 @@
 
                     <div class="col-md-12">
                     <h6><%= f.label :name, class:"labels" %></h6>
-                    <%= f.text_field :name, class: 'form-control' %>    
+                    <%= f.text_field :name, class: 'form-control', placeholder:'Shop name' %>    
                     </div>
                     <div class="col-md-12">
                     <h6><%= f.label :description, class:"labels" %></h6>
-                    <%= f.text_area :description, class: 'form-control' %>    
+                    <%= f.text_area :description, class: 'form-control', placeholder:'Something about your shop ...' %>    
                     </div>
 
                 <%= f.submit "Create shop", class: "btn btn-primary" %> 

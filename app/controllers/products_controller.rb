@@ -5,7 +5,6 @@ class ProductsController < ApplicationController
 
 
     # edit product: only by current shop
-    # 
     def new
         @product = current_shop.products.build 
     end

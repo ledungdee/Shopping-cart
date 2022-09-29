@@ -3,11 +3,10 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user, only: [:destroy]
   before_action :check_not_exist, only: [:show,:edit]
-
   def new
     @user = User.new 
   end
-def create
+  def create
     @user = User.new(user_params)
     if @user.save
       reset_session
@@ -38,6 +37,7 @@ def create
     @user = User.find_by(id:params[:id])
     if @user.update(user_params)
       # Handle a successful update.
+      @user.update_attribute(:delivery_address,@user.address)
       flash[:success] = "Profile updated!"
       redirect_to @user 
     else
@@ -50,10 +50,17 @@ def create
     flash[:success] = "User deleted"
     redirect_to users_url, status: :see_other
   end
-
+  def change_delivery_address
+    @user = current_user 
+  end
+  def update_delivery_address
+    @user = current_user
+    @user.update_attribute(:delivery_address, params[:user][:delivery_address])
+    redirect_to cart_session_path(current_cart_session)
+  end
   private
     def user_params 
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone_number, :address, :image, :image_cache) 
+      params.require(:user).permit(:name,:email,:password,:password_confirmation,:phone_number,:address,:delivery_address,:image,:image_cache) 
     end  
 
     # Before filters

@@ -1,2 +1,96 @@
-<h1>CartSessions#show</h1>
-<p>Find me in app/views/cart_sessions/show.html.erb</p>
+<% provide(:title,'Check out') %>
+<section class="h-100 h-custom" style="background-color: #FFF0F5;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+          <div class="card-body p-0">
+            <div class="row g-0">
+              <div class="col-lg-8">
+                <div class="p-5">
+                  <div class="d-flex justify-content-between align-items-center mb-5">
+                    <h1 class="fw-bold mb-0 text-black">Your order information:</h1>
+                  </div>
+                    <h5><b># Customer: <%= current_user.name %></b><h5>
+                    <h6>Phone: <%= current_user.phone_number %><h6>
+                    <h6>Email: <%= current_user.email %><h5>
+                    <h6>Delivery to: <%= current_user.delivery_address %>
+                        <%= link_to "Change",new_addr_path, method: :get, class: "btn btn-primary w-30" %>
+                    <h5> 
+
+                <% @cart_items.each do |cart_item| %>                       
+                  <hr class="my-4">
+                  <div class="row mb-4 d-flex justify-content-between align-items-center">
+                    <div class="col-md-2 col-lg-2 col-xl-2">
+                      <%= image_tag cart_item.product.images[0].url, class: "img-fluid" %>  
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-3">
+                      <div class="text-muted">
+                          <h6>
+                          <% @product = cart_item.product %>
+                          <%= link_to cart_item.product.name, @product %> 
+                          </h6>
+                      </div>
+                      <div class="text-black mb-0">
+                        <h6>Size: <%= cart_item.size %></h6>
+                      </div>
+                      <div class="text-black mb-0">
+                        <h6>Price: $<%= cart_item.product.price %></h6>
+                      </div>
+                    </div>                      
+                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                      <h6>Quantity: <%= cart_item.quantity %><h6>
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                      <div class="mb-0">
+                        <h6>$<%= cart_item.product.price*cart_item.quantity %></h6>
+                      </div>
+                    </div>
+                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                      <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                    </div>
+                  </div>
+                <% end %>
+
+                  <hr class="my-4">
+                  <div class="pt-5">
+                    <h6 class="mb-0"><a href="/cart_items" class="text-body"><i
+                          class="fas fa-long-arrow-alt-left me-2"></i>Back to cart item</a></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 bg-grey">
+                <div class="p-5">
+                  <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                  <hr class="my-4">
+
+                  <div class="d-flex justify-content-between mb-4">
+                    <div class="text-uppercase">
+                        <h5><%= pluralize(@item_number,"item") %></h5>
+                    </div>
+                    <h5>$<%= current_cart_session.sum_money %></h5>
+                  </div>
+
+                  <div class="d-flex justify-content-between mb-4">
+                      <div class="text-uppercase">
+                      <h5>Shipping</h5>
+                      </div>
+                      <h5>$2</h5>
+                    </div>
+                    <hr class="my-4">
+                    <div class="d-flex justify-content-between mb-5">
+                      <h5 class="text-uppercase">Total price</h5>
+                      <h5>$<%= current_cart_session.sum_money + 2 %></h5>
+                    </div>
+
+                   <%= button_to "Checkout", checkout_path, method: :post, class: "btn btn-primary w-100" %> 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
