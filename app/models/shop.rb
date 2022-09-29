@@ -1,6 +1,6 @@
 class Shop < ApplicationRecord
   belongs_to :user
-  has_many :products 
+  has_many :products
 
   # has_one_attached :image
   mount_uploader :avatar, ImageUploader

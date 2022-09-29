@@ -2,6 +2,7 @@ class User < ApplicationRecord
     attr_accessor :remember_token
     has_one :shop
     has_one :cart_session
+    has_many :orders
 
     # has_one_attached :image
     mount_uploader :image, ImageUploader
