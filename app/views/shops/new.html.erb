@@ -18,8 +18,7 @@
                 </span>            
 
                 <div>
-                    <br>
-                    <%= f.label :avatar, "Upload shop avatar" %>
+                    <h6><%= f.label :avatar, "Upload shop avatar" %></h6>
                     <%= f.file_field :avatar, class: "form-control" %>
                 </div>
             </div>
@@ -32,12 +31,12 @@
                 <div class="row mt-3">
 
                     <div class="col-md-12">
-                    <%= f.label :name, class:"labels" %> 
+                    <h6><%= f.label :name, class:"labels" %></h6>
                     <%= f.text_field :name, class: 'form-control' %>    
                     </div>
                     <div class="col-md-12">
-                    <%= f.label :description, class:"labels" %> 
-                    <%= f.text_field :description, class: 'form-control' %>    
+                    <h6><%= f.label :description, class:"labels" %></h6>
+                    <%= f.text_area :description, class: 'form-control' %>    
                     </div>
 
                 <%= f.submit "Create shop", class: "btn btn-primary" %> 

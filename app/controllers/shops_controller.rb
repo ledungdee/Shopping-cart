@@ -2,10 +2,14 @@ class ShopsController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :index, :destroy]
   before_action :correct_shop,   only: [:edit, :update, :destroy]
   before_action :check_not_exist, only: [:show,:edit]
-
   def new
+    if current_shop.present?
+       redirect_to root_path
+       flash[:danger] = 'Shop has already create' 
+    else
     @shop = current_user.build_shop 
     @user = @shop.user 
+    end
   end
   def create
     @shop = current_user.build_shop(shop_params)
