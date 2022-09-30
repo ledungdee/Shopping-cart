@@ -15,7 +15,6 @@ gem 'will_paginate', '3.3'
 gem 'will_paginate-bootstrap4'
 gem 'mini_magick' 
 gem 'file_validators' 
-gem "fog-aws"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 
