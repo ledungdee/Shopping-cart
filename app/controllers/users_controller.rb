@@ -46,7 +46,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find_by(id:params[:id]).destroy
+    @user = User.find_by(id:params[:id])
+    if @user.shop.present?
+      if @user.shop.products.present?
+        @user.shop.products.destroy_all
+      end
+      @user.shop.destroy
+    end
+    @user.destroy
     flash[:success] = "User deleted"
     redirect_to users_url, status: :see_other
   end
@@ -86,6 +93,7 @@ class UsersController < ApplicationController
     def admin_user
       if !current_user.admin?
         redirect_to(root_url, status: :see_other)
+        flash[:danger] = 'Access denied'
       end
     end
     def check_not_exist
