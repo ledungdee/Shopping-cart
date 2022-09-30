@@ -80,7 +80,8 @@
                     <% if current_user?(@user) %>
                     <br>
                     <%= link_to "Your shop",current_shop, class:"btn btn-primary"%>
-                    <%= link_to "Edit shop",edit_shop_path(current_shop), class:"btn btn-primary"%>
+                    <%= link_to "Edit shop",edit_shop_path(current_shop), class:"btn btn-primary"%>       
+                    <%= link_to "New item",new_product_path, class:"btn btn-primary"%>             
                     <% end %>
                 </div>
             </div>
