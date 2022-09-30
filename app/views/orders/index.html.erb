@@ -1,4 +1,5 @@
 <% provide(:title,'Order information') %>
+
 <h2>Order information</h2>
 <h2># Customer: <%= current_user.name %></h2>
 <% @orders.each do |order| %>
@@ -12,3 +13,4 @@
     <% end %>
 
 <% end %>
+

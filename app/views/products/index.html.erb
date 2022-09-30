@@ -22,9 +22,13 @@
                            <%= link_to "Add to cart" ,'#', class:"option1" %>                           
                         </div>
                      </div>
+                     <% if product.images? %>
                      <div class="img-box">
                         <%= image_tag product.images[0].url, class: "img-fluid" %>
                      </div>
+                     <% else %>
+                        <%= image_tag(src="https://assets.materialup.com/uploads/77a5d214-0a8a-4444-a523-db0c4e97b9c0/preview.jpg", class: "img-fluid") %>
+                     <% end %>
                      <div class="detail-box">
                         <h5>
                            <%= product.name %>
