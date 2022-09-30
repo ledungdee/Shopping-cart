@@ -8,11 +8,12 @@ class ShopsController < ApplicationController
        flash[:danger] = 'Shop has already create' 
     else
     @shop = current_user.build_shop 
-    @user = @shop.user 
+    @user = current_user 
     end
   end
   def create
     @shop = current_user.build_shop(shop_params)
+    @user = current_user
     if @shop.save
       current_user.update_attribute(:role, 1)
       flash[:success] = "Welcome to a new Shop!"
