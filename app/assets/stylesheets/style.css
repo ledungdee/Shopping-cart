@@ -9,7 +9,12 @@ body {
   background-color: #ffffff;
   overflow-x: hidden;
 }
-
+.redtext {
+	color: red;
+}
+.bluetext {
+	color: rgb(0,191,255);
+}
 .cirle_custom {
   width: 150px;
   height: 150px;
@@ -363,7 +368,7 @@ a:focus {
 }
 
 .product_section .heading_container {
-  margin-bottom: 20px;
+  margin-bottom: -40px;
 }
 
 .product_section .box {

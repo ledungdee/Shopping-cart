@@ -125,12 +125,12 @@
                       <div class="text-uppercase">
                       <h5>Shipping</h5>
                       </div>
-                      <h5>$2</h5>
+                      <h5>$<%= $ship %></h5>
                     </div>
                     <hr class="my-4">
                     <div class="d-flex justify-content-between mb-5">
                       <h5 class="text-uppercase">Total price</h5>
-                      <h5>$<%= current_cart_session.sum_money + 2 %></h5>
+                      <h5>$<%= current_cart_session.sum_money + $ship %></h5>
                     </div>
 
                     <h5 class="text-uppercase mb-3">discount code</h5>

@@ -3,6 +3,10 @@ class CartItemsController < ApplicationController
 
   def index
       @cart_items = current_cart_session.cart_items
+      $ship = 2
+      if current_cart_session.sum_money >= 200
+        $ship = 0
+      end
       @item_number = 0
       @cart_items.each do |t|
         @item_number += t.quantity
