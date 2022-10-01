@@ -9,16 +9,18 @@
 
 
 # Create a main sample user. 
-User.create!(name:"Lê Văn Dũng", email:"levandung@gmail.com", 
+User.create!(name:"LE VAN DUUNG", email:"admin@gmail.com", 
             password:"123456", password_confirmation:"123456", admin:true)
  
-User.create!(name:"Mai Trang", email:"maitrang@gmail.com", 
+User.create!(name:"THE SECOND ADMIN", email:"admin2@gmail.com", 
             password:"123456", password_confirmation:"123456", admin:true)
 
-User.create!(name:"nguoithu3", email:"nguoithu3@gmail.com", 
+User.create!(name:"User3", email:"user3@gmail.com", 
             password:"123456", password_confirmation:"123456")
-User.create!(name:"nguoithu4", email:"nguoithu4@gmail.com", 
+User.create!(name:"User4", email:"user4@gmail.com", 
             password:"123456", password_confirmation:"123456")
+
+
 #  Generate a bunch of additional users. 
 # 99.times do |n| 
 #     name = Faker::Name.name 

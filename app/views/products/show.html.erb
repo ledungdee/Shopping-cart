@@ -92,10 +92,10 @@
                     </div>
                     <%= f.submit "Add to cart",class: "btn btn-primary px-3", style: "margin: 0px; background-color:#4169E1" %>
                     <div><br></div>
-                    <div class="d-flex pt-2">
-                        <strong class="text-dark mr-2">Shop action:</strong>
-                    </div>
                     <% if current_shop?(@shop)%>
+                        <div class="d-flex pt-2">
+                            <strong class="text-dark mr-2">Shop action:</strong>
+                        </div>
                         <%= link_to 'Edit product', edit_product_path(@product), class: "btn btn-secondary" %>
                         <%= link_to "Destroy item", @product, data: {"turbo-method": :delete, turbo_confirm: "Item will be delete?" }, class: "btn btn-danger" %>
 

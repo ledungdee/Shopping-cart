@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-    before_action :logged_in_user, only: [:edit, :update, :index, :destroy, :show]
+    before_action :logged_in_user, only: [:edit, :update, :destroy]
     before_action :correct_shop_product, only: [:edit, :update, :destroy]
     before_action :check_not_exist, only: [:show,:edit]
 

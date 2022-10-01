@@ -1,5 +1,5 @@
 class CartItemsController < ApplicationController
-  # before_action :create_cart_session, only: [:create]
+  before_action :logged_in_user, only: [:create]
 
   def index
       @cart_items = current_cart_session.cart_items
@@ -73,4 +73,11 @@ class CartItemsController < ApplicationController
   def cart_item_params
     params.require(:cart_item).permit(:cart_session_id, :product_id, :quantity)
   end
+  def logged_in_user 
+    if logged_in? == false 
+        # store_location #L10.32
+        flash[:danger] ="Please log in." 
+        redirect_to login_url, status: :see_other 
+    end 
+end
 end
