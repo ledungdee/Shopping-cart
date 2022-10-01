@@ -9,7 +9,10 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :delivery_address
       t.integer :admin, default:false 
       t.integer :role, default:0
-      t.string :image 
+      t.string :image
+      t.string :delivery_name
+      t.string :delivery_number
+
     end
   end
 end

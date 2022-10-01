@@ -9,7 +9,7 @@
 
 
 # Create a main sample user. 
-User.create!(name:"LE VAN DUUNG", email:"admin@gmail.com", 
+User.create!(name:"LE VAN DUNG", email:"admin@gmail.com", 
             password:"123456", password_confirmation:"123456", admin:true)
  
 User.create!(name:"THE SECOND ADMIN", email:"admin2@gmail.com", 

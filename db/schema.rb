@@ -96,6 +96,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_29_205947) do
     t.integer "admin", default: 0
     t.integer "role", default: 0
     t.string "image"
+    t.string "delivery_name"
+    t.string "delivery_number"
     t.string "remember_digest"
   end
 

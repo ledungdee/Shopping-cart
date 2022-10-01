@@ -9,12 +9,14 @@
         <div class="row align-items-stretch justify-content-center no-gutters">
             <div class="col-md-7">
             <div class="form h-100 contact-wrap p-5">
-                <h3 class="text-center">New delivery address</h3>
+                <h3 class="text-center">Update delivery information</h3>
                 <form class="mb-5" method="post" id="contactForm" name="contactForm">
                 <div class="row mb-5">
                     <div class="col-md-12 form-group mb-3">
                     <br>
-                    <%= f.text_area :delivery_address, class: "form-control" %>
+                    <%= f.text_field :delivery_name, class: "form-control", placeholder: "Name" %>
+                    <%= f.text_field :delivery_number, class: "form-control", placeholder: "Phone number" %>
+                    <%= f.text_area :delivery_address, class: "form-control", placeholder:"Address:" %>
                     <%= f.submit "Confirm", class: "btn btn-primary" %>
                     </div>
                 </div>
@@ -23,7 +25,6 @@
             </div>
         </div>
         </div>
-
     </div>
   </body>
 </html>

@@ -11,8 +11,8 @@
                   <div class="d-flex justify-content-between align-items-center mb-5">
                     <h1 class="fw-bold mb-0 text-black">Your draft order information:</h1>
                   </div>
-                    <h5><b># Customer: <%= current_user.name %></b></h5>
-                    <h6>Phone: <%= current_user.phone_number %></h6>
+                    <h5><b># Customer: <%= current_user.delivery_name %></b></h5>
+                    <h6>Phone: <%= current_user.delivery_number %></h6>
                     <h6>Email: <%= current_user.email %></h5>
                     <h6>Delivery to: <%= current_user.delivery_address %>
                         <%= link_to "Change",new_addr_path, method: :get, class: "btn btn-primary w-30" %>

@@ -38,6 +38,8 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       # Handle a successful update.
       @user.update_attribute(:delivery_address,@user.address)
+      @user.update_attribute(:delivery_name,@user.name)
+      @user.update_attribute(:delivery_number,@user.phone_number)
       flash[:success] = "Profile updated!"
       redirect_to @user 
     else
@@ -63,6 +65,8 @@ class UsersController < ApplicationController
   def update_delivery_address
     @user = current_user
     @user.update_attribute(:delivery_address, params[:user][:delivery_address])
+    @user.update_attribute(:delivery_name, params[:user][:delivery_name])
+    @user.update_attribute(:delivery_number, params[:user][:delivery_number])
     redirect_to cart_session_path(current_cart_session)
   end
   private
