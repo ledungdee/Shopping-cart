@@ -8,14 +8,13 @@ class CartItemsController < ApplicationController
         @item_number += t.quantity
       end
     end 
-  
-  def show   
-  end
   # def new
   #   @cart_item = CartItem.new
   # end
 
   def create
+    @a = maxquantity($id_current_product,params[:size])
+    if params[:quantity].to_i <= @a
       @cart_item = CartItem.new
       @cart_item.cart_session_id = current_user.cart_session.id
       @cart_item.quantity = params[:quantity]
@@ -25,18 +24,15 @@ class CartItemsController < ApplicationController
       sum_money += @cart_item.product.price * @cart_item.quantity
       @cart_item.cart_session.update_attribute(:sum_money, sum_money)
       if @cart_item.save
-          flash[:success] = 'Success added to cart'
-          redirect_to current_product
+        flash[:success] = 'Success added to cart'
+        redirect_to products_path 
       else
-          render 'new', status: :unprocessable_entity
+        render 'new', status: :unprocessable_entity
       end
-    
-  end
-
-  def edit
-  end
-
-  def update
+    else
+      redirect_to current_product
+      flash[:danger] = 'Product is not enough'
+    end
   end
 
   def destroy

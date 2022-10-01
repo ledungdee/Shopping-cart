@@ -95,13 +95,15 @@
                      </div>
                      <div class="img-box">
                         <% if product.images? %>
-                        <%= image_tag product.images[0].url, class: "img-fluid" %>
-                        <% end %>   
+                           <%= image_tag product.images[0].url, class: "img-fluid" %>
+                        <% else %>
+                           <%= image_tag(src="https://www.pngkey.com/png/detail/365-3654131_cart-empty-image-your-cart-is-empty.png", class: "img-fluid") %>
+                        <% end %>
                      </div>
                      <div class="detail-box">
                         <h5>
                            <%= product.name %>
-                        </h5>
+                     </h5>
                      </div>
                      <div class="detail-box">
                         <h6>    

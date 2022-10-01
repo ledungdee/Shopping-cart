@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   resources :users
   resources :shops
   resources :products 
-  resources :cart_items
-  resources :cart_sessions
+  resources :cart_items, only: [:index, :create, :update_quantity, :destroy]
+  resources :cart_sessions, only: [:show,:checkout]
   resources :orders, only: [:index]
 
   post '/products/add_to_cart', to: 'cart_items#create', as: 'add_to_cart'
