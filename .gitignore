@@ -31,3 +31,4 @@
 /config/master.key
 # UploaderImage
 public/uploads   
+/.env

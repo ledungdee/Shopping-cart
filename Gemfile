@@ -9,7 +9,7 @@ gem "sass-rails"
 gem "font-awesome-sass", "~> 6.2.0"
 gem 'faker','2.1.2'  
 gem 'bootstrap-will_paginate','1.0.0'
-gem 'carrierwave'
+gem 'carrierwave', "~> 2.2.2"
 gem "fog-aws"
 gem 'will_paginate', '3.3'
 gem 'will_paginate-bootstrap4'
@@ -69,7 +69,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem 'pry-rails'
-
+  gem 'dotenv-rails'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
