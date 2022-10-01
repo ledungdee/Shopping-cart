@@ -17,7 +17,7 @@ class CartItemsController < ApplicationController
   # end
 
   def create
-    @a = maxquantity($id_current_product,params[:size])
+    @a = max_quantity($id_current_product,params[:size])
     if params[:quantity].to_i <= @a
       @cart_item = CartItem.new
       @cart_item.cart_session_id = current_user.cart_session.id
@@ -48,25 +48,35 @@ class CartItemsController < ApplicationController
     flash[:success] = "Deleted this item"
     redirect_to cart_items_path, status: :see_other
   end
+  
 
   def update_quantity
-    @cart_item = CartItem.find_by(id: params[:cart_item][:id_item_update])
-    sum_money = @cart_item.cart_session.sum_money
-    now_quantity = @cart_item.quantity.to_i 
-    new_quantity = params[:quantity].to_i
-
-    if new_quantity > now_quantity
-      sum_money += (new_quantity - now_quantity)*@cart_item.product.price
-    else
-      sum_money -= (now_quantity - new_quantity)*@cart_item.product.price
-    end
-    @cart_item.cart_session.update_attribute(:sum_money, sum_money)
-    @cart_item.update_attribute(:quantity, new_quantity)
-    if new_quantity == 0
-      @cart_item.destroy 
-    end
-    redirect_to cart_items_path
+    @id = params[:cart_item][:id_product].to_i
+    @size = params[:cart_item][:size]
+    @a = max_quantity(@id,@size)
     # binding.pry
+    if (params[:quantity].to_i <= @a)
+      @cart_item = CartItem.find_by(id: params[:cart_item][:id_item_update])
+      sum_money = @cart_item.cart_session.sum_money
+      now_quantity = @cart_item.quantity.to_i 
+      new_quantity = params[:quantity].to_i
+
+      if new_quantity > now_quantity
+        sum_money += (new_quantity - now_quantity)*@cart_item.product.price
+      else
+        sum_money -= (now_quantity - new_quantity)*@cart_item.product.price
+      end
+      @cart_item.cart_session.update_attribute(:sum_money, sum_money)
+      @cart_item.update_attribute(:quantity, new_quantity)
+      if new_quantity == 0
+        @cart_item.destroy 
+      end
+      redirect_to cart_items_path
+      # binding.pry
+    else
+      redirect_to cart_items_path
+      flash[:danger] = 'Product is not enough'
+    end
   end
 
   private
@@ -79,5 +89,15 @@ class CartItemsController < ApplicationController
         flash[:danger] ="Please log in." 
         redirect_to login_url, status: :see_other 
     end 
-end
+  end
+  def max_quantity(id,size)
+    @product = Product.find_by(id: id)
+    case size
+    when 'S' then return @product.size_s
+    when 'M' then return @product.size_m
+    when 'L' then return @product.size_l
+    else 
+        return @product.size_xl 
+    end
+  end
 end

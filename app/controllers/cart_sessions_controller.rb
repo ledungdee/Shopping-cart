@@ -27,31 +27,35 @@ class CartSessionsController < ApplicationController
   end
 
   private
-  def decrease_product_quantity(cart_item)
-    if cart_item.size == "S"
-      before = cart_item.product.size_s
-      after = before - cart_item.quantity
-      cart_item.product.update_attribute(:size_s,after)
-    elsif cart_item.size == "M"
-      before = cart_item.product.size_m
-      after = before - cart_item.quantity
-      cart_item.product.update_attribute(:size_m,after) 
-    elsif cart_item.size == "L"
-      before = cart_item.product.size_l
-      after = before - cart_item.quantity
-      cart_item.product.update_attribute(:size_l,after)
-    elsif cart_item.size == "XL"
-      before = cart_item.product.size_xl
-      after = before - cart_item.quantity
-      cart_item.product.update_attribute(:size_xl,after)
-    end  
+  def decrease_product_quantity(x)
+    case x.size
+    when 'S' then 
+      before = x.product.size_s
+      after = before - x.quantity
+      x.product.update_attribute(:size_s,after)
+    when 'M' then
+      before = x.product.size_m
+      after = before - x.quantity
+      x.product.update_attribute(:size_m,after)
+    when "L" then
+      before = x.product.size_l
+      after = before - x.quantity
+      x.product.update_attribute(:size_l,after)      
+    else 
+      before = x.product.size_xl
+      after = before - x.quantity
+      x.product.update_attribute(:size_xl,after)
+    end
   end
+
   def newAtrs(order, cart_item)
     {
       order_id: order.id,
       product_id: cart_item.product_id,
       quantity: cart_item.quantity,
-      size: cart_item.size
+      size: cart_item.size,
+      price: cart_item.product.price,
+      name: cart_item.product.name
     }
   end
 end

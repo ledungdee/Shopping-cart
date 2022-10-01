@@ -9,16 +9,22 @@
 
 
 # Create a main sample user. 
-User.create!(name:"LE VAN DUNG", email:"admin@gmail.com", 
-            password:"123456", password_confirmation:"123456", admin:true)
+# User.create!(name:"LE VAN DUNG", email:"admin@gmail.com", 
+#             password:"123456", password_confirmation:"123456", admin:true)
  
-User.create!(name:"THE SECOND ADMIN", email:"admin2@gmail.com", 
-            password:"123456", password_confirmation:"123456", admin:true)
+# User.create!(name:"THE SECOND ADMIN", email:"admin2@gmail.com", 
+#             password:"123456", password_confirmation:"123456", admin:true)
 
-User.create!(name:"User3", email:"user3@gmail.com", 
+# User.create!(name:"User3", email:"user3@gmail.com", 
+#             password:"123456", password_confirmation:"123456")
+# User.create!(name:"User4", email:"user4@gmail.com", 
+#             password:"123456", password_confirmation:"123456")
+
+
+a = User.create!(name:"User6", email:"user6@gmail.com", 
             password:"123456", password_confirmation:"123456")
-User.create!(name:"User4", email:"user4@gmail.com", 
-            password:"123456", password_confirmation:"123456")
+
+a.build_shop(name:"Shop user6",description:"Shop buon ban quan ao ")
 
 
 #  Generate a bunch of additional users. 

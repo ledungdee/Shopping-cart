@@ -42,9 +42,6 @@ class ShopsController < ApplicationController
       redirect_to @shop 
     end
   end
-  def show_products
-  @shop_products = current_shop.products
-  end
   def destroy
     Shop.find_by(id:params[:id]).products.destroy_all
     Shop.find_by(id:params[:id]).destroy
