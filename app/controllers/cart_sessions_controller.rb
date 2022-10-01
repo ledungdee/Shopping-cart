@@ -9,6 +9,8 @@ class CartSessionsController < ApplicationController
   def checkout
     @order = Order.new
     @order.user_id = current_cart_session.user_id
+    sum_money = current_cart_session.sum_money
+    sum_money += $ship
     @order.sum_money = current_cart_session.sum_money
     if  @order.save 
       current_cart_session.cart_items.each do |cart_item|
@@ -20,7 +22,7 @@ class CartSessionsController < ApplicationController
       end
       current_cart_session.update_attribute(:sum_money,0)
       flash[:success] = "Order successfully"
-      redirect_to root_path
+      redirect_to orders_path
     else 
       flash[:danger] = "Order fail"  
     end
