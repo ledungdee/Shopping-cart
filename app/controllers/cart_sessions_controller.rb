@@ -13,6 +13,7 @@ class CartSessionsController < ApplicationController
     if  @order.save 
       current_cart_session.cart_items.each do |cart_item|
         OrderItem.create(newAtrs(@order, cart_item))
+        
         # quantity remove
         decrease_product_quantity(cart_item)
         cart_item.destroy
