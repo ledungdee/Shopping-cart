@@ -23,7 +23,8 @@ class ShopsController < ApplicationController
     end
   end
   def index
-    @shops = Shop.all
+    @order_items = OrderItem.all
+    # current_shop.products.where(id: order_item.product_id)
   end
   def show
     @shop = Shop.find_by(id: params[:id])

@@ -46,6 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_29_205947) do
     t.string "size"
     t.integer "price"
     t.string "name"
+    t.integer "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"

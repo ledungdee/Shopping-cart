@@ -6,7 +6,7 @@ module ProductsHelper
 
 
     def status
-        if (current_product.size_s + current_product.size_m + current_product.size_l + current_product.size_xl) > 0
+        if (current_product.size_s.to_i + current_product.size_m.to_i + current_product.size_l.to_i + current_product.size_xl.to_i) > 0
             return 1
         else
             return 0

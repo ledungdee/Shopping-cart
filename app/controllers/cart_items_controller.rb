@@ -2,23 +2,40 @@ class CartItemsController < ApplicationController
   before_action :logged_in_user, only: [:create]
 
   def index
-      @cart_items = current_cart_session.cart_items
-      $ship = 2
-      if current_cart_session.sum_money >= 200
-        $ship = 0
-      end
-      @item_number = 0
-      @cart_items.each do |t|
-        @item_number += t.quantity
-      end
-    end 
-  # def new
-  #   @cart_item = CartItem.new
+    @cart_items = current_cart_session.cart_items
+    # cart_items_collapse(@cart_items)
+    # # binding.pry
+    $ship = 2
+    if current_cart_session.sum_money >= 200
+      $ship = 0
+    end
+    @item_number = 0
+    @cart_items.each do |t|
+      @item_number += t.quantity
+    end
+
+  end 
+
+  # def cart_items_collapse(cart_items)
+  #   for i in (0..(cart_items.count-1))
+  #     quantity = cart_items[i].quantity
+  #     for j in ((i+1)..(cart_items.count-1))
+  #       if (cart_items[i].product_id == cart_items[j].product_id && cart_items[i].size == cart_items[j].size)
+  #         @a = cart_items[j].quantity
+  #         @a += quantity
+  #         cart_items[i].destroy
+  #         cart_items[j].update_attribute(:quantity, @a)
+          
+  #         break
+  #       end
+  #     end
+  #   end  
   # end
 
+
   def create
-    @a = max_quantity($id_current_product,params[:size])
-    if params[:quantity].to_i <= @a
+    a = max_quantity($id_current_product,params[:size])
+    if (0 < params[:quantity].to_i && params[:quantity].to_i <= a)
       @cart_item = CartItem.new
       @cart_item.cart_session_id = current_user.cart_session.id
       @cart_item.quantity = params[:quantity]

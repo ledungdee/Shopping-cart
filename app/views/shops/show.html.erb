@@ -10,7 +10,7 @@
                     <%= image_tag(@shop.avatar.url, width:"150px") %>
                     </div>
                 <% else %>
-                    <%= image_tag(src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg", class:"rounded-circle mt-5", width:"150px" )%>
+                    <%= image_tag(src="https://cdn.iconscout.com/icon/free/png-256/shop-338-454916.png", class:"rounded-circle mt-5", width:"150px" )%>
                 <% end %>
                 <span class="font-weight-bold">
                     <h4><b><%= @shop.name %></b></h4>
@@ -37,8 +37,9 @@
                 
                 <div class='mt-5 text-center'>
                     <% if current_shop?(@shop)%>
-                        <%= link_to 'Edit shop', edit_shop_path(current_shop), class:"btn btn-primary" %>               
+                        <%= link_to 'Modify shop', edit_shop_path(current_shop), class:"btn btn-primary" %>               
                         <%= link_to 'Add product',new_product_path, class:"btn btn-primary" %>
+                        <%= link_to 'Sold product',shops_path, class:"btn btn-primary" %>
                         <%= link_to "Delete shop", @shop, data: {"turbo-method": :delete, turbo_confirm: "Delete your shop will be delete all product too, continues?" }, class:"btn btn-danger" %>
                     <% end %> 
                 </div>

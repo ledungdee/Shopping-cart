@@ -7,6 +7,7 @@ class CreateOrderItems < ActiveRecord::Migration[7.0]
       t.string  :size
       t.integer :price
       t.string :name
+      t.integer :shop_id
 
       t.timestamps
     end

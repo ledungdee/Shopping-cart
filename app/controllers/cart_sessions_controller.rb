@@ -1,4 +1,6 @@
 class CartSessionsController < ApplicationController
+  # before_action :check_quantity only:[:checkout] 
+
   def show
     @cart_items = current_cart_session.cart_items
     @item_number = 0
@@ -7,6 +9,7 @@ class CartSessionsController < ApplicationController
     end
   end
   def checkout
+
     @order = Order.new
     @order.user_id = current_cart_session.user_id
     @order.phone = current_user.delivery_number
@@ -27,9 +30,16 @@ class CartSessionsController < ApplicationController
       flash[:success] = "Order successfully"
       redirect_to orders_path
     else 
-      flash[:danger] = "Order fail"  
+      flash[:danger] = "Error"  
     end
   end
+
+  def check_quantity
+
+  end
+
+
+
 
   private
   def decrease_product_quantity(x)
@@ -54,13 +64,16 @@ class CartSessionsController < ApplicationController
   end
 
   def newAtrs(order, cart_item)
+    @product = Product.find_by(id: cart_item.product_id)
+    @shop = @product.shop 
     {
       order_id: order.id,
       product_id: cart_item.product_id,
       quantity: cart_item.quantity,
       size: cart_item.size,
       price: cart_item.product.price,
-      name: cart_item.product.name
+      name: cart_item.product.name,
+      shop_id: @shop.id 
     }
   end
 end
