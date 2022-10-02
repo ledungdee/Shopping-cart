@@ -11,5 +11,15 @@ module ProductsHelper
         else
             return 0
         end
-    end   
+    end  
+    def max_quantity(id,size)
+        @product = Product.find_by(id: id)
+        case size
+        when 'S' then return @product.size_s
+        when 'M' then return @product.size_m
+        when 'L' then return @product.size_l
+        else 
+            return @product.size_xl 
+        end
+      end 
 end
