@@ -66,7 +66,7 @@
                     </p>
                     
                     <div class="product__number mb-2">
-                        <% if status == 1 %>
+                        <% if (status.to_i == 1) %>
                             <h5 class="bluetext">Available</h5>
                         <% else %>
                             <h5 class="redtext">Out of stock</h5>
