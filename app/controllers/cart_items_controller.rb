@@ -29,7 +29,7 @@ class CartItemsController < ApplicationController
       @cart_item.cart_session.update_attribute(:sum_money, sum_money)
       if @cart_item.save
         flash[:success] = 'Success added to cart'
-        redirect_to products_path 
+        redirect_to current_product
       else
         render 'new', status: :unprocessable_entity
       end
@@ -85,7 +85,7 @@ class CartItemsController < ApplicationController
   end
   def logged_in_user 
     if logged_in? == false 
-        # store_location #L10.32
+        store_location #L10.32
         flash[:danger] ="Please log in." 
         redirect_to login_url, status: :see_other 
     end 
