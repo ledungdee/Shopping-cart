@@ -3,7 +3,10 @@ class CreateOrders < ActiveRecord::Migration[7.0]
     create_table :orders do |t|
       t.references :user
       t.integer :sum_money
-
+      t.string  :name
+      t.string  :address
+      t.string  :phone
+      
       t.timestamps
     end
   end

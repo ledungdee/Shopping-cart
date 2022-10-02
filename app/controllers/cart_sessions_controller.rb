@@ -9,6 +9,9 @@ class CartSessionsController < ApplicationController
   def checkout
     @order = Order.new
     @order.user_id = current_cart_session.user_id
+    @order.phone = current_user.delivery_number
+    @order.address = current_user.delivery_address
+    @order.name = current_user.delivery_name
     sum_money = current_cart_session.sum_money
     sum_money += $ship
     @order.sum_money = current_cart_session.sum_money
