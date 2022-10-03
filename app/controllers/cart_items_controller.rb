@@ -6,7 +6,7 @@ class CartItemsController < ApplicationController
     # cart_items_collapse(@cart_items)
     # # binding.pry
     $ship = 2
-    if current_cart_session.sum_money >= 200
+    if current_cart_session.sum_money >= 200 || current_cart_session.cart_items.blank?
       $ship = 0
     end
     @item_number = 0
