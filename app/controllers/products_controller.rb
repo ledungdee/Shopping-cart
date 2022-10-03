@@ -83,9 +83,10 @@ class ProductsController < ApplicationController
         @product = Product.find(params[:id])
         @cart_items = CartItem.where(product_id: params[:id])
         @cart_items.each do |cart_item|
-            sum_money = current_cart_session.sum_money
+            @cart_session = cart_item.cart_session
+            sum_money = @cart_session.sum_money
             sum_money -= cart_item.quantity*@product.price 
-            current_cart_session.update_attribute(:sum_money, sum_money )
+            @cart_session.update_attribute(:sum_money, sum_money)
             cart_item.destroy
         end
         @product.destroy

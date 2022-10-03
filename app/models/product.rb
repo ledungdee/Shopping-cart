@@ -5,6 +5,6 @@ class Product < ApplicationRecord
     validates :price, presence: true
     validates_numericality_of :price, :greater_than => 0
     validates :color, presence: true
-    # validates :images, presence: true
+    validates :images, presence: true
     mount_uploaders :images, ImageUploader
 end

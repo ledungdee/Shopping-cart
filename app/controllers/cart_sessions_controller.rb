@@ -12,16 +12,16 @@ class CartSessionsController < ApplicationController
     check = true
     cart_items = current_cart_session.cart_items
     for i in (0...cart_items.length())
-      @total = cart_items[i].quantity
+      total = cart_items[i].quantity
       for j in (i+1...cart_items.length())
         if (cart_items[i].size == cart_items[j].size && cart_items[i].product_id == cart_items[j].product_id)
-          @total += cart_items[j].quantity
-          @id = Product.find_by(id: cart_items[i].product_id).id
-          @s = cart_items[i].size
+          total += cart_items[j].quantity
         end
       end
-      @t = max_quantity(@id,@s)
-      if (@total > @t)
+      @id = cart_items[i].product_id
+      @s = cart_items[i].size
+      t = max_quantity(@id,@s)
+      if (total > t)
         check = false 
       end
     end
@@ -39,11 +39,11 @@ class CartSessionsController < ApplicationController
       @order.sum_money = current_cart_session.sum_money
       if  @order.save 
         current_cart_session.cart_items.each do |cart_item|
-          OrderItem.create(newAtrs(@order, cart_item))
+        OrderItem.create(newAtrs(@order, cart_item))
           
           # quantity remove
-          decrease_product_quantity(cart_item)
-          cart_item.destroy
+        decrease_product_quantity(cart_item)
+        cart_item.destroy
         end
         current_cart_session.update_attribute(:sum_money,0)
         flash[:success] = "Order successfully"
@@ -89,4 +89,14 @@ class CartSessionsController < ApplicationController
       shop_id: @shop.id 
     }
   end
+  def max_quantity(id,size)
+    @product = Product.find_by(id: id)
+    case size
+    when 'S' then return @product.size_s
+    when 'M' then return @product.size_m
+    when 'L' then return @product.size_l
+    else 
+        return @product.size_xl 
+    end
+  end 
 end

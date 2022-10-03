@@ -17,6 +17,7 @@
                     <h5><b># Customer: <%= order.name %></b></h5>
                     <h6>Phone: <%= order.phone %></h6>
                     <h6>Delivery to: <%= order.address %>
+                    <h6>Created at: <%= order.created_at %></h6>
                 <% @order_items.each do |order_item|%>                     
                     <hr class="my-4">
                     <div class="row mb-4 d-flex justify-content-between align-items-center">                    
@@ -63,7 +64,7 @@
                            <h5>$<%= order.sum_money %></h5>
                           
                   </div>
-                  <h5>Create at: <%= order.created_at %></h5>
+                  
               </div>
             </div>
           </div>
