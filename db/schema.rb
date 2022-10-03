@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_29_205947) do
     t.bigint "product_id"
     t.integer "quantity"
     t.string "size"
+    t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_session_id"], name: "index_cart_items_on_cart_session_id"

@@ -5,6 +5,7 @@ class CreateCartItems < ActiveRecord::Migration[7.0]
       t.references :product
       t.integer :quantity
       t.string :size
+      t.integer :price
 
       t.timestamps
     end

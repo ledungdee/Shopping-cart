@@ -41,6 +41,7 @@ class CartItemsController < ApplicationController
       @cart_item.quantity = params[:quantity]
       @cart_item.size = params[:size]
       @cart_item.product_id = current_product.id
+      @cart_item.price = @cart_item.product.price 
       sum_money = @cart_item.cart_session.sum_money
       sum_money += @cart_item.product.price * @cart_item.quantity
       @cart_item.cart_session.update_attribute(:sum_money, sum_money)

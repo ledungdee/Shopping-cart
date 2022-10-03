@@ -69,15 +69,22 @@ class ProductsController < ApplicationController
     end
 
     def update
-        @product = Product.find(params[:id])
-        # puts params 
-        if @product.update(product_params)
+        @product = Product.find(params[:id]) 
+        if  @product.update(product_params)
+            @cart_items = CartItem.where(product_id: @product.id)
+            @cart_items.each do |cart_item|
+                @cart_session = cart_item.cart_session
+                sum_money = @cart_session.sum_money
+                sum_money += (@product.price - cart_item.price)*cart_item.quantity
+                @cart_session.update_attribute(:sum_money, sum_money)
+                cart_item.update_attribute(:price,@product.price)
+            end
             flash[:success] = "Updated sucessful!"
             redirect_to @product 
         else
             render 'edit', status: :unprocessable_entity
         end
-  end
+    end
 
     def destroy
         @product = Product.find(params[:id])
