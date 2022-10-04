@@ -16,21 +16,22 @@ class CartItemsController < ApplicationController
 
   end 
 
-  # def cart_items_collapse(cart_items)
-  #   for i in (0..(cart_items.count-1))
-  #     quantity = cart_items[i].quantity
-  #     for j in ((i+1)..(cart_items.count-1))
-  #       if (cart_items[i].product_id == cart_items[j].product_id && cart_items[i].size == cart_items[j].size)
-  #         @a = cart_items[j].quantity
-  #         @a += quantity
-  #         cart_items[i].destroy
-  #         cart_items[j].update_attribute(:quantity, @a)
-          
-  #         break
-  #       end
-  #     end
-  #   end  
-  # end
+  def cart_items_collapse(cart_items)
+    for i in 0...cart_items.count
+      quantity = cart_items[i].quantity
+      
+      for j in (i+1)...cart_items.count
+        if (cart_items[i].product_id == cart_items[j].product_id && cart_items[i].size == cart_items[j].size)
+          @a = cart_items[j].quantity
+          @a += quantity
+          cart_items[i].destroy
+          cart_items[j].update_attribute(:quantity, @a)
+    
+          break
+        end
+      end
+    end  
+  end
 
 
   def create

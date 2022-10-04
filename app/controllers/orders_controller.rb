@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
             @quantity = order_item.quantity
             return_quantity(@product,@size,@quantity)
             order_item.destroy
+            
         end
         @order.destroy
         flash[:success] = 'Your order have been cancel'
