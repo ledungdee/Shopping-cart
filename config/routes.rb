@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :products 
   resources :cart_items, only: [:index, :create, :update_quantity, :destroy]
   resources :cart_sessions, only: [:show,:checkout]
-  resources :orders, only: [:index]
+  resources :orders
 
   post '/products/add_to_cart', to: 'cart_items#create', as: 'add_to_cart'
   patch '/update_quantity', to: 'cart_items#update_quantity'

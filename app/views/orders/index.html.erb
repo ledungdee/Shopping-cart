@@ -1,8 +1,8 @@
-<% provide(:title,'Your order   ') %>
+<% provide(:title,'Your order') %>
 
 <% @orders.each do |order| %>
-<% @order_items = order.order_items %>
 
+<% @order_items = order.order_items %>
 <section class="h-100 h-custom" style="background-color: #FFF0F5;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -13,19 +13,17 @@
               <div class="col-lg-8">
                 <div class="p-5">
                   <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h2 class="fw-bold mb-0 text-black">Your order:<%= order %></h2></div>
+                    <h2 class="fw-bold mb-0 text-black">Order id: <%= order.id %></h2></div>
                     <h5><b># Customer: <%= order.name %></b></h5>
                     <h6>Phone: <%= order.phone %></h6>
                     <h6>Delivery to: <%= order.address %>
                     <h6>Created at: <%= order.created_at %></h6>
+            
                 <% @order_items.each do |order_item|%>                     
                     <hr class="my-4">
                     <div class="row mb-4 d-flex justify-content-between align-items-center">                    
                       <div class="col-md-2 col-lg-2 col-xl-2">
-
-
-                          <%= image_tag(src="https://www.pngkey.com/png/detail/365-3654131_cart-empty-image-your-cart-is-empty.png", class: "img-fluid") %>
-                   
+                          <%= image_tag(src="https://www.pngkey.com/png/detail/365-3654131_cart-empty-image-your-cart-is-empty.png", class: "img-fluid") %>               
                       </div>
                     <div class="col-md-3 col-lg-3 col-xl-3">
                       <div class="text-muted">
@@ -50,7 +48,7 @@
                     </div>
                   </div>
                 <% end %>
-                </div>
+              </div>
               </div>
               <div class="col-lg-4 bg-grey">
                 <div class="p-5">
@@ -59,13 +57,10 @@
                   <div class="d-flex justify-content-between mb-4">
                     <div class="d-flex justify-content-between mb-5">
                       <h5 class="text-uppercase">Total price</h5>
-            
                     </div>
-                           <h5>$<%= order.sum_money %></h5>
-                          
+                           <h5>$<%= order.sum_money %></h5>                         
                   </div>
-                  
-              </div>
+              <%= link_to "Cancel your order", order, data: {"turbo-method": :delete, turbo_confirm: "Are you sure?" }, class:"btn btn-danger w-100" %>
             </div>
           </div>
         </div>
