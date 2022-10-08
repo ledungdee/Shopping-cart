@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'microposts/new'
+  get 'microposts/edit'
+  get 'microposts/destroy'
 
   root "static_pages#home"
   get "/help",    to: "static_pages#help"
