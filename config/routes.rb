@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'new/edit'
+  get 'new/destroy'
+  get 'new/update'
   get 'microposts/new'
   get 'microposts/edit'
   get 'microposts/destroy'
