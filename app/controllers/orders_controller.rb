@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
         end
         @order.destroy
         flash[:success] = 'Your order have been cancel'
-        redirect_to orders_path, status: :see_other
+        redirect_to home_path, status: :see_other
     end
 
     private

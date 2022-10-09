@@ -51,7 +51,6 @@ class ShopsController < ApplicationController
     redirect_to root_url, status: :see_other
   end 
 
-
   private
     def shop_params
       params.require(:shop).permit(:name, :description, :avatar)

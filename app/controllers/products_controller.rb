@@ -62,8 +62,8 @@ class ProductsController < ApplicationController
         @product = Product.find(params[:id])
         @shop = @product.shop
         $id_current_product = @product.id 
+        @count = sold_count
     end
-
     def edit
         @product = Product.find(params[:id])
     end
@@ -132,5 +132,18 @@ class ProductsController < ApplicationController
             flash[:danger] = 'Product not exist!'
         end
     end
+    def sold_count
+        @order_items = OrderItem.where(product_id: @product.id)
+        if !@order_items.blank?
+            @order_items.each do |order_item|
+            @count = 0
+            @count += order_item.quantity
+            end
+            return @count
+        else 
+            return 0
+        end
+    end
+
 
 end
