@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUsers < ActiveRecord::Migration[7.0]
   def change
     create_table :users do |t|
@@ -7,12 +9,11 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :phone_number
       t.string :address
       t.string :delivery_address
-      t.integer :admin, default:false 
-      t.integer :role, default:0
+      t.integer :admin, default: false
+      t.integer :role, default: 0
       t.string :image
       t.string :delivery_name
       t.string :delivery_number
-
     end
   end
 end

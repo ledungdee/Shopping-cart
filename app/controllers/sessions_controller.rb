@@ -1,33 +1,36 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      forwarding_url = session[:forwarding_url] #L10.33
+    if user&.authenticate(params[:session][:password])
+      forwarding_url = session[:forwarding_url] # L10.33
       # Log the user in and redirect to the user's show page.
       reset_session
-      params[:session][:remember_me] =='1' ? remember(user) : forget(user)
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       log_in user
-      #redirect_to user 
-      redirect_to forwarding_url || user #L10.33
+      # redirect_to user
+      redirect_to forwarding_url || user # L10.33
       create_cart_session
     else
-    # Create an error message. 
-      flash[:danger] ='Invalid email/password combination'
+      # Create an error message.
+      flash[:danger] = 'Invalid email/password combination'
       render 'new', status: :unprocessable_entity
     end
   end
+
   def destroy
     log_out if logged_in?
     redirect_to root_url, status: :see_other
   end
+
   def create_cart_session
-    if current_user.cart_session == nil
-        @cart_session = CartSession.new
-        @cart_session.user_id = current_user.id
-        @cart_session.save
-    end
+    return unless current_user.cart_session.nil?
+
+    @cart_session = CartSession.new
+    @cart_session.user_id = current_user.id
+    @cart_session.save
   end
 end

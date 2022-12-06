@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   get 'comment/new'
   get 'comment/edit'
@@ -11,24 +13,22 @@ Rails.application.routes.draw do
   get 'microposts/edit'
   get 'microposts/destroy'
 
-  root "static_pages#home"
-  get "/help",    to: "static_pages#help"
-  get "/blog",    to: "static_pages#blog"
-  get "/contact", to: "static_pages#contact"
-  get "/about",   to: "staic_pages#about"
+  root 'static_pages#home'
+  get '/help',    to: 'static_pages#help'
+  get '/blog',    to: 'static_pages#blog'
+  get '/contact', to: 'static_pages#contact'
+  get '/about',   to: 'staic_pages#about'
 
-  get    "/signup",     to: "users#new"
-  get    "/login",      to: "sessions#new"
-  post   "/login",      to: "sessions#create"
-  delete "/logout",     to: "sessions#destroy"
-  get    "/logout",     to: "sessions#destroy"
-
+  get    '/signup',     to: 'users#new'
+  get    '/login',      to: 'sessions#new'
+  post   '/login',      to: 'sessions#create'
+  delete '/logout',     to: 'sessions#destroy'
 
   resources :users
   resources :shops
-  resources :products 
-  resources :cart_items, only: [:index, :create, :update_quantity, :destroy]
-  resources :cart_sessions, only: [:show,:checkout]
+  resources :products
+  resources :cart_items, only: %i[index create update_quantity destroy]
+  resources :cart_sessions, only: %i[show checkout]
   resources :orders
 
   post '/products/add_to_cart', to: 'cart_items#create', as: 'add_to_cart'
